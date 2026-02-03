@@ -4,7 +4,7 @@
 
 ### *Where Culinary Art Meets Precision*
 
-<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=E67E22&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Premium+Recipe+Experience;iOS+26+Liquid+Glass+Design;Next.js+14+%2B+Framer+Motion" alt="Typing SVG" />
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=E67E22&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=100&lines=Premium+Recipe+Experience" alt="Typing SVG" />
 
 <p align="center">
   <img src="https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
