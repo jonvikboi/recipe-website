@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { springConfig } from "@/lib/animation-config";
+import CurvedLoop from "@/components/CurvedLoop";
 
 export default function Hero() {
     const { scrollY } = useScroll();
@@ -30,7 +31,7 @@ export default function Hero() {
                     RECIPEL
                 </motion.h1>
 
-                {/* Refined tagline with fade */}
+                {/* Curved Loop Animation */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -38,9 +39,15 @@ export default function Hero() {
                     style={{ opacity: taglineOpacity }}
                     className="space-y-6"
                 >
-                    <p className="text-xl md:text-2xl text-charcoal/60 font-light tracking-wide">
-                        Curated Excellence · Global Flavors · Timeless Techniques
-                    </p>
+                    <div className="h-40 w-full">
+                        <CurvedLoop
+                            marqueeText="Curated Excellence · Global Flavors · Timeless Techniques"
+                            speed={1.5}
+                            curveAmount={200}
+                            interactive={false}
+                            className="fill-charcoal"
+                        />
+                    </div>
 
                     {/* Elegant stats row */}
                     <motion.div
