@@ -52,7 +52,7 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                 rotateY,
             }}
             transition={springConfig}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             className="relative cursor-pointer group perspective-1000"
             style={{ transformStyle: "preserve-3d" }}
         >
@@ -76,10 +76,10 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
 
                     {/* Title and description overlaid on image */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="text-2xl font-bold mb-2 group-hover:text-orange transition-colors">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-orange transition-colors">
                             {recipe.title}
                         </h3>
-                        <p className="text-white/90 text-sm line-clamp-2">
+                        <p className="text-white/90 text-xs sm:text-sm line-clamp-2">
                             {recipe.description}
                         </p>
                     </div>

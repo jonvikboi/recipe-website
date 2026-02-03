@@ -33,9 +33,9 @@ export default function Navbar() {
                     backgroundOpacity={0.83}
                     saturation={1.3}
                     blur={25}
-                    className="px-8 py-4 pointer-events-auto shadow-lg backdrop-blur-xl"
+                    className="px-4 sm:px-6 md:px-8 py-3 md:py-4 pointer-events-auto shadow-lg backdrop-blur-xl"
                 >
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
                         {/* Logo icon */}
                         <motion.div
                             style={{ scale: titleScale }}
@@ -47,13 +47,13 @@ export default function Navbar() {
                         {/* Brand name */}
                         <motion.h2
                             style={{ scale: titleScale }}
-                            className="text-2xl font-black text-charcoal tracking-tight"
+                            className="text-lg sm:text-xl md:text-2xl font-black text-charcoal tracking-tight"
                         >
                             RECIPEL
                         </motion.h2>
 
-                        {/* Navigation links */}
-                        <div className="flex items-center gap-6 ml-4">
+                        {/* Navigation links - hidden on mobile */}
+                        <div className="hidden md:flex items-center gap-6 ml-4">
                             <NavLink href="#recipes">Recipes</NavLink>
                             <NavLink href="#about">About</NavLink>
                             <NavLink href="#contact">Contact</NavLink>

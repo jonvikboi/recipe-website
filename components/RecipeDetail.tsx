@@ -45,7 +45,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                     {/* Modal */}
                     <motion.div
                         layoutId={`recipe-card-${recipe.id}`}
-                        className="fixed inset-4 md:inset-8 lg:inset-16 bg-cream rounded-3xl overflow-hidden shadow-2xl z-50"
+                        className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-16 bg-cream rounded-none sm:rounded-3xl overflow-hidden shadow-2xl z-50"
                     >
                         <div className="h-full overflow-y-auto">
                             {/* Close button */}
@@ -54,13 +54,13 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ ...springConfig, delay: 0.2 }}
                                 onClick={onClose}
-                                className="absolute top-6 right-6 z-10 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange hover:text-white transition-colors"
+                                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange hover:text-white transition-colors"
                             >
                                 <X className="w-6 h-6" />
                             </motion.button>
 
                             {/* Hero image */}
-                            <div className="relative h-72 md:h-96 w-full">
+                            <div className="relative h-48 sm:h-64 md:h-72 lg:h-96 w-full">
                                 <Image
                                     src={recipe.image}
                                     alt={recipe.title}
@@ -71,12 +71,12 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                             </div>
 
                             {/* Content */}
-                            <div className="px-6 md:px-12 pb-12 -mt-20 relative z-10">
+                            <div className="px-4 sm:px-6 md:px-12 pb-8 md:pb-12 -mt-12 sm:mt-16 md:-mt-20 relative z-10">
                                 <motion.h1
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...springConfig, delay: 0.1 }}
-                                    className="text-4xl md:text-5xl font-black text-charcoal mb-4"
+                                    className="text-3xl sm:text-4xl md:text-5xl font-black text-charcoal mb-3 md:mb-4"
                                 >
                                     {recipe.title}
                                 </motion.h1>
@@ -85,19 +85,19 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...springConfig, delay: 0.15 }}
-                                    className="text-xl text-charcoal/70 mb-8"
+                                    className="text-base sm:text-lg md:text-xl text-charcoal/70 mb-6 md:mb-8"
                                 >
                                     {recipe.description}
                                 </motion.p>
 
-                                <div className="grid md:grid-cols-2 gap-8">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                                     {/* Ingredients */}
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ ...springConfig, delay: 0.2 }}
                                     >
-                                        <h2 className="text-2xl font-bold text-charcoal mb-4">Ingredients</h2>
+                                        <h2 className="text-xl sm:text-2xl font-bold text-charcoal mb-4">Ingredients</h2>
                                         <ul className="space-y-3">
                                             {recipe.ingredients.map((ingredient, index) => (
                                                 <motion.li
@@ -110,8 +110,8 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                 >
                                                     <div className="relative mt-1">
                                                         <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-all ${checkedIngredients.has(ingredient.id)
-                                                                ? 'bg-orange border-orange'
-                                                                : 'border-charcoal/30 group-hover:border-orange'
+                                                            ? 'bg-orange border-orange'
+                                                            : 'border-charcoal/30 group-hover:border-orange'
                                                             }`}>
                                                             <AnimatePresence>
                                                                 {checkedIngredients.has(ingredient.id) && (
@@ -141,7 +141,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ ...springConfig, delay: 0.25 }}
                                     >
-                                        <h2 className="text-2xl font-bold text-charcoal mb-4">Instructions</h2>
+                                        <h2 className="text-xl sm:text-2xl font-bold text-charcoal mb-4">Instructions</h2>
                                         <ol className="space-y-4">
                                             {recipe.steps.map((step, index) => (
                                                 <motion.li

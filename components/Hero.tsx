@@ -26,7 +26,7 @@ export default function Hero() {
                         y: titleY,
                         opacity: titleOpacity,
                     }}
-                    className="text-[12rem] md:text-[18rem] lg:text-[24rem] font-black text-charcoal tracking-tighter leading-none select-none mb-8"
+                    className="text-[8rem] sm:text-[12rem] md:text-[18rem] lg:text-[24rem] font-black text-charcoal tracking-tighter leading-none select-none mb-4 md:mb-8"
                 >
                     RECIPEL
                 </motion.h1>
@@ -39,9 +39,9 @@ export default function Hero() {
                     style={{ opacity: taglineOpacity }}
                     className="space-y-6"
                 >
-                    <div className="h-40 w-full">
+                    <div className="h-24 sm:h-32 md:h-40 w-full overflow-hidden">
                         <CurvedLoop
-                            marqueeText="Curated Excellence · Global Flavors · Timeless Techniques"
+                            marqueeText="Curated Excellence · Global Flavors · Timeless Techniques · "
                             speed={1.5}
                             curveAmount={200}
                             interactive={false}
@@ -54,10 +54,10 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.5 }}
-                        className="flex items-center justify-center gap-8 mt-8"
+                        className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 mt-4 md:mt-8"
                     >
                         <StatItem number="6" label="Premium Recipes" delay={0.6} />
-                        <div className="w-px h-12 bg-charcoal/20" />
+                        <div className="w-full sm:w-px h-px sm:h-12 bg-charcoal/20" />
                         <StatItem number="5" label="Cuisines" delay={0.7} />
                         <div className="w-px h-12 bg-charcoal/20" />
                         <StatItem number="100%" label="Chef Curated" delay={0.8} />

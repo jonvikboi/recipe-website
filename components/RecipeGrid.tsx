@@ -12,23 +12,23 @@ interface RecipeGridProps {
 
 export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) {
     return (
-        <section id="recipes" className="py-24 px-4 max-w-7xl mx-auto">
+        <section id="recipes" className="py-12 sm:py-16 md:py-24 px-4 max-w-7xl mx-auto">
             <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainerVariants}
-                className="mb-16 text-center"
+                className="mb-8 sm:mb-12 md:mb-16 text-center"
             >
                 <motion.h2
                     variants={fadeInVariants}
-                    className="text-5xl md:text-6xl font-black text-charcoal mb-4"
+                    className="text-4xl sm:text-5xl md:text-6xl font-black text-charcoal mb-4"
                 >
                     Featured Recipes
                 </motion.h2>
                 <motion.p
                     variants={fadeInVariants}
-                    className="text-xl text-charcoal/70 max-w-2xl mx-auto"
+                    className="text-lg sm:text-xl text-charcoal/70 max-w-2xl mx-auto"
                 >
                     Discover our curated collection of exquisite dishes from around the world
                 </motion.p>
