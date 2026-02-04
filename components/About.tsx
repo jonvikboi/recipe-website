@@ -128,7 +128,7 @@ export default function About() {
                                 culinary circles worldwide.
                             </p>
                             <blockquote className="border-l-4 border-orange pl-4 sm:pl-6 py-2 italic text-lg sm:text-xl text-charcoal/70">
-                                "Cooking is not just about feeding the body, it's about nourishing the soul with every bite."
+                                &ldquo;Cooking is not just about feeding the body, it&rsquo;s about nourishing the soul with every bite.&rdquo;
                             </blockquote>
                         </motion.div>
 

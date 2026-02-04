@@ -81,7 +81,7 @@ export default function Contact() {
                         Get in Touch
                     </h2>
                     <p className="text-lg sm:text-xl text-charcoal/60 max-w-2xl mx-auto">
-                        Have a question about a recipe or want to collaborate? We'd love to hear from you!
+                        Have a question about a recipe or want to collaborate? We&rsquo;d love to hear from you!
                     </p>
                 </motion.div>
 
@@ -158,7 +158,7 @@ export default function Contact() {
                                     required
                                     rows={6}
                                     className="w-full px-4 py-3 rounded-xl border-2 border-charcoal/10 bg-white focus:border-orange focus:outline-none transition-colors text-charcoal resize-none"
-                                    placeholder="Tell us what's on your mind..."
+                                    placeholder="Tell us what&rsquo;s on your mind..."
                                 />
                             </div>
 
@@ -170,7 +170,7 @@ export default function Contact() {
                                     className="flex items-center gap-2 p-4 bg-green-50 border-2 border-green-200 rounded-xl text-green-800"
                                 >
                                     <CheckCircle className="w-5 h-5" />
-                                    <span className="font-medium">Message sent successfully! We'll get back to you soon.</span>
+                                    <span className="font-medium">Message sent successfully! We&rsquo;ll get back to you soon.</span>
                                 </motion.div>
                             )}
 
@@ -221,7 +221,7 @@ export default function Contact() {
                                 Contact Information
                             </h3>
                             <p className="text-charcoal/70 mb-8 leading-relaxed">
-                                Reach out to us through any of these channels. We're always happy to connect
+                                Reach out to us through any of these channels. We&rsquo;re always happy to connect
                                 with food enthusiasts and answer your culinary questions!
                             </p>
 

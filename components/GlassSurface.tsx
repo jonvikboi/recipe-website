@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useId } from 'react';
+import React, { useEffect, useRef, useState, useId, useCallback } from 'react';
 
 export interface GlassSurfaceProps {
     children?: React.ReactNode;
@@ -96,7 +96,7 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
 
     const isDarkMode = useDarkMode();
 
-    const generateDisplacementMap = () => {
+    const generateDisplacementMap = useCallback(() => {
         const rect = containerRef.current?.getBoundingClientRect();
         const actualWidth = rect?.width || 400;
         const actualHeight = rect?.height || 200;
@@ -122,11 +122,29 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
     `;
 
         return `data:image/svg+xml,${encodeURIComponent(svgContent)}`;
-    };
+    }, [borderWidth, borderRadius, redGradId, blueGradId, mixBlendMode, brightness, opacity, blur]);
 
-    const updateDisplacementMap = () => {
+    const updateDisplacementMap = useCallback(() => {
         feImageRef.current?.setAttribute('href', generateDisplacementMap());
-    };
+    }, [generateDisplacementMap]);
+
+    const supportsSVGFilters = useCallback(() => {
+        if (typeof window === 'undefined' || typeof document === 'undefined') {
+            return false;
+        }
+
+        const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+        const isFirefox = /Firefox/.test(navigator.userAgent);
+
+        if (isWebkit || isFirefox) {
+            return false;
+        }
+
+        const div = document.createElement('div');
+        div.style.backdropFilter = `url(#${filterId})`;
+
+        return div.style.backdropFilter !== '';
+    }, [filterId]);
 
     useEffect(() => {
         updateDisplacementMap();
@@ -158,12 +176,13 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         blueOffset,
         xChannel,
         yChannel,
-        mixBlendMode
+        mixBlendMode,
+        updateDisplacementMap
     ]);
 
     useEffect(() => {
         setSvgSupported(supportsSVGFilters());
-    }, []);
+    }, [supportsSVGFilters]);
 
     useEffect(() => {
         if (!containerRef.current) return;
@@ -177,29 +196,13 @@ const GlassSurface: React.FC<GlassSurfaceProps> = ({
         return () => {
             resizeObserver.disconnect();
         };
-    }, []);
+    }, [updateDisplacementMap]);
 
     useEffect(() => {
         setTimeout(updateDisplacementMap, 0);
-    }, [width, height]);
+    }, [width, height, updateDisplacementMap]);
 
-    const supportsSVGFilters = () => {
-        if (typeof window === 'undefined' || typeof document === 'undefined') {
-            return false;
-        }
 
-        const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-        const isFirefox = /Firefox/.test(navigator.userAgent);
-
-        if (isWebkit || isFirefox) {
-            return false;
-        }
-
-        const div = document.createElement('div');
-        div.style.backdropFilter = `url(#${filterId})`;
-
-        return div.style.backdropFilter !== '';
-    };
 
     const supportsBackdropFilter = () => {
         if (typeof window === 'undefined') return false;
