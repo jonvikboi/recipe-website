@@ -29,7 +29,8 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
     const [offset, setOffset] = useState(0);
     const uid = useId();
     const pathId = `curve-${uid}`;
-    const pathD = `M-100,40 Q500,${40 + curveAmount} 1540,40`;
+    // Shift baseline from 40 to 80 so 64px font doesn't get clipped by the top/bottom of viewBox (120 height)
+    const pathD = `M-100,80 Q500,${80 + curveAmount} 1540,80`;
 
     const dragRef = useRef(false);
     const lastXRef = useRef(0);

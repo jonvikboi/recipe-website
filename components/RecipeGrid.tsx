@@ -18,20 +18,28 @@ export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) 
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainerVariants}
-                className="mb-8 sm:mb-12 md:mb-16 text-center"
+                className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
             >
+                <div className="absolute right-0 top-0 w-8 h-8 flex flex-col justify-between hidden md:flex">
+                    <div className="w-full h-px bg-orange" />
+                    <div className="w-full h-px border-t border-dashed border-orange" />
+                </div>
+                
                 <motion.h2
                     variants={fadeInVariants}
-                    className="text-4xl sm:text-5xl md:text-6xl font-black text-charcoal mb-4"
+                    className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight"
                 >
-                    Featured Recipes
+                    Curations
                 </motion.h2>
-                <motion.p
+                <motion.div
                     variants={fadeInVariants}
-                    className="text-lg sm:text-xl text-charcoal/70 max-w-2xl mx-auto"
+                    className="flex items-center gap-6"
                 >
-                    Discover our curated collection of exquisite dishes from around the world
-                </motion.p>
+                    <div className="w-12 h-px bg-orange" />
+                    <p className="text-xs tracking-[0.2em] text-charcoal/40 uppercase font-sans">
+                        Mastery in Every Dish
+                    </p>
+                </motion.div>
             </motion.div>
 
             <motion.div
@@ -39,7 +47,8 @@ export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) 
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainerVariants}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-16 lg:gap-y-32"
+                style={{ gridAutoFlow: 'dense' }}
             >
                 {recipes.map((recipe) => (
                     <motion.div key={recipe.id} variants={fadeInVariants}>

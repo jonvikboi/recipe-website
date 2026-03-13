@@ -13,8 +13,8 @@ interface RecipeCardProps {
 }
 
 export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
-    const [rotateX, setRotateX] = useState(0);
-    const [rotateY, setRotateY] = useState(0);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
     const cardRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -22,22 +22,23 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
 
         const card = cardRef.current;
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        const rotateXValue = ((y - centerY) / centerY) * -20;
-        const rotateYValue = ((x - centerX) / centerX) * 20;
+        // Subtle magnetic pull towards the cursor
+        const xValue = ((mouseX - centerX) / centerX) * 12;
+        const yValue = ((mouseY - centerY) / centerY) * 12;
 
-        setRotateX(rotateXValue);
-        setRotateY(rotateYValue);
+        setX(xValue);
+        setY(yValue);
     };
 
     const handleMouseLeave = () => {
-        setRotateX(0);
-        setRotateY(0);
+        setX(0);
+        setY(0);
     };
 
     return (
@@ -47,57 +48,49 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
             onClick={onClick}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            animate={{
-                rotateX,
-                rotateY,
-            }}
+            animate={{ x, y }}
             transition={springConfig}
             whileHover={{ scale: 1.02 }}
-            className="relative cursor-pointer group perspective-1000"
-            style={{ transformStyle: "preserve-3d" }}
+            className="relative cursor-pointer group"
         >
-            <div className="relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                {/* Image with text overlay */}
-                <div className="relative h-80 w-full overflow-hidden">
+            <div className="relative bg-cream/50 overflow-hidden border border-charcoal/10 group-hover:border-charcoal/30 transition-colors duration-500">
+                {/* Image Section */}
+                <div className="relative h-[400px] w-full overflow-hidden">
                     <Image
                         src={recipe.image}
                         alt={recipe.title}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     />
 
-                    {/* Seamless gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-                    {/* Difficulty badge */}
-                    <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-charcoal">
+                    {/* Difficulty badge - Sharp, structural */}
+                    <div className="absolute top-0 right-0 px-4 py-2 bg-charcoal text-xs font-medium tracking-widest text-cream uppercase">
                         {recipe.difficulty}
-                    </div>
-
-                    {/* Title and description overlaid on image */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-orange transition-colors">
-                            {recipe.title}
-                        </h3>
-                        <p className="text-white/90 text-xs sm:text-sm line-clamp-2">
-                            {recipe.description}
-                        </p>
                     </div>
                 </div>
 
-                {/* Meta information */}
-                <div className="p-4 flex items-center justify-center gap-6 text-sm text-charcoal/70 bg-cream/30">
-                    <div className="flex items-center gap-1.5">
-                        <Clock className="w-4 h-4" />
-                        <span>{recipe.cookTime}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <Users className="w-4 h-4" />
-                        <span>{recipe.servings}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <ChefHat className="w-4 h-4" />
-                        <span>{recipe.ingredients.length}</span>
+                {/* Minimalist Info Section */}
+                <div className="p-6 md:p-8 bg-cream border-t border-charcoal/10 relative">
+                    {/* Vertical decorative accent */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+                    
+                    <h3 className="text-2xl sm:text-3xl font-serif font-medium mb-3 text-charcoal group-hover:text-orange transition-colors duration-500">
+                        {recipe.title}
+                    </h3>
+                    <p className="text-charcoal/60 text-sm md:text-base font-light mb-6 line-clamp-2 leading-relaxed">
+                        {recipe.description}
+                    </p>
+
+                    {/* Meta information */}
+                    <div className="flex items-center gap-6 text-xs tracking-widest uppercase text-charcoal/40 font-medium">
+                        <div className="flex items-center gap-2">
+                            <Clock className="w-4 h-4" />
+                            <span>{recipe.cookTime}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Users className="w-4 h-4" />
+                            <span>{recipe.servings}</span>
+                        </div>
                     </div>
                 </div>
             </div>

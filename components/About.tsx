@@ -16,27 +16,28 @@ export default function About() {
     const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
     const contentOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-    // 3D tilt effect for image
-    const [rotateX, setRotateX] = useState(0);
-    const [rotateY, setRotateY] = useState(0);
+    // Subtle magnetic effect for image
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
     const imageRef = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!imageRef.current) return;
         const rect = imageRef.current.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateXValue = ((y - centerY) / centerY) * -10;
-        const rotateYValue = ((x - centerX) / centerX) * 10;
-        setRotateX(rotateXValue);
-        setRotateY(rotateYValue);
+        // Subtle magnetic pull
+        const xValue = ((mouseX - centerX) / centerX) * 25;
+        const yValue = ((mouseY - centerY) / centerY) * 25;
+        setX(xValue);
+        setY(yValue);
     };
 
     const handleMouseLeave = () => {
-        setRotateX(0);
-        setRotateY(0);
+        setX(0);
+        setY(0);
     };
 
     const stats = [
@@ -58,52 +59,60 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={springConfig}
-                    className="text-center mb-12 md:mb-20"
+                    className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
                 >
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-charcoal mb-4">
-                        Meet the Chef
+                    <div className="absolute right-0 top-0 w-8 h-8 flex-col justify-between hidden md:flex">
+                        <div className="w-full h-px bg-orange" />
+                        <div className="w-full h-px border-t border-dashed border-orange" />
+                    </div>
+
+                    <h2 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight">
+                        The Artisan
                     </h2>
-                    <p className="text-lg sm:text-xl text-charcoal/60 max-w-2xl mx-auto">
-                        Passion, precision, and a lifetime dedicated to culinary excellence
-                    </p>
+                    
+                    <div className="flex items-center gap-6">
+                        <div className="w-12 h-px bg-orange" />
+                        <p className="text-xs tracking-[0.2em] text-charcoal/40 uppercase font-sans">
+                            Geena Binu Jose
+                        </p>
+                    </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
-                    {/* Chef Image with 3D Effect */}
-                    <motion.div
-                        ref={imageRef}
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseLeave}
-                        animate={{ rotateX, rotateY }}
-                        transition={springConfig}
-                        style={{
-                            transformStyle: "preserve-3d",
-                            y: imageY
-                        }}
-                        className="relative group perspective-1000"
-                    >
-                        <div className="relative h-[400px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+                    {/* Chef Image with Magnetic Effect */}
+                    <motion.div style={{ y: imageY }} className="relative z-10 w-full h-full">
+                        <motion.div
+                            ref={imageRef}
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                            animate={{ x, y }}
+                            transition={springConfig}
+                            className="relative group w-full h-full"
+                        >
+                        <div className="relative h-[500px] sm:h-[600px] md:h-[700px] rounded-none overflow-hidden border border-charcoal/10 group-hover:border-charcoal/30 transition-colors duration-500">
                             <Image
                                 src="/images/chef-geena.jpg"
                                 alt="Chef Geena Binu Jose"
                                 fill
-                                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                                className="object-cover grayscale group-hover:grayscale-0 transition-transform duration-700"
                             />
                             {/* Gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent opacity-80" />
 
-                            {/* Floating name badge */}
+                            {/* Sharp floating name badge */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, scaleY: 0 }}
+                                whileInView={{ opacity: 1, scaleY: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ ...springConfig, delay: 0.3 }}
-                                className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl"
+                                className="absolute bottom-6 left-6 right-6 bg-cream border border-charcoal/10 p-6 md:p-8 transform origin-bottom"
                             >
-                                <h3 className="text-2xl sm:text-3xl font-bold text-charcoal">Geena Binu Jose</h3>
-                                <p className="text-orange font-semibold">Executive Chef & Culinary Artist</p>
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange" />
+                                <h3 className="text-2xl sm:text-3xl font-serif font-medium text-charcoal mb-2">Geena Binu Jose</h3>
+                                <p className="text-xs tracking-widest text-charcoal/50 uppercase font-sans">Executive Chef & Culinary Artist</p>
                             </motion.div>
                         </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Content */}
@@ -132,23 +141,23 @@ export default function About() {
                             </blockquote>
                         </motion.div>
 
-                        {/* Animated Stats Grid */}
-                        <div className="grid grid-cols-2 gap-4 mt-8">
+                        <div className="grid grid-cols-2 gap-px bg-charcoal/10 mt-12 border border-charcoal/10">
                             {stats.map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
+                                    initial={{ opacity: 0 }}
+                                    whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    transition={{ ...springConfig, delay: 0.3 + index * 0.1 }}
-                                    whileHover={{ scale: 1.05, y: -5 }}
-                                    className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                                    transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
+                                    whileHover={{ backgroundColor: "rgba(253, 252, 240, 1)" }}
+                                    className="bg-cream p-6 sm:p-8 flex flex-col justify-center transition-colors relative group"
                                 >
-                                    <stat.icon className="w-8 h-8 text-orange mb-2" />
-                                    <div className="text-3xl sm:text-4xl font-black text-charcoal mb-1">
+                                    <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-orange/0 group-hover:border-orange/100 transition-colors m-2" />
+                                    <stat.icon className="w-5 h-5 text-orange mb-4 opacity-50 stroke-1" />
+                                    <div className="text-3xl sm:text-4xl font-serif font-medium text-charcoal mb-2">
                                         {stat.value}
                                     </div>
-                                    <div className="text-xs sm:text-sm text-charcoal/60 font-medium">
+                                    <div className="text-[10px] sm:text-xs text-charcoal/50 tracking-widest uppercase font-sans">
                                         {stat.label}
                                     </div>
                                 </motion.div>

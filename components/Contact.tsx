@@ -75,14 +75,23 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={springConfig}
-                    className="text-center mb-12 md:mb-20"
+                    className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
                 >
-                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-charcoal mb-4">
-                        Get in Touch
+                    <div className="absolute right-0 top-0 w-8 h-8 flex-col justify-between hidden md:flex">
+                        <div className="w-full h-px bg-orange" />
+                        <div className="w-full h-px border-t border-dashed border-orange" />
+                    </div>
+
+                    <h2 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight">
+                        Connect
                     </h2>
-                    <p className="text-lg sm:text-xl text-charcoal/60 max-w-2xl mx-auto">
-                        Have a question about a recipe or want to collaborate? We&rsquo;d love to hear from you!
-                    </p>
+                    
+                    <div className="flex items-center gap-6">
+                        <div className="w-12 h-px bg-orange" />
+                        <p className="text-xs tracking-[0.2em] text-charcoal/40 uppercase font-sans">
+                            Reach Out
+                        </p>
+                    </div>
                 </motion.div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
@@ -96,7 +105,7 @@ export default function Contact() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             {/* Name Input */}
                             <div>
-                                <label htmlFor="name" className="block text-sm font-semibold text-charcoal mb-2">
+                                <label htmlFor="name" className="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">
                                     Your Name
                                 </label>
                                 <input
@@ -106,14 +115,13 @@ export default function Contact() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 rounded-xl border-2 border-charcoal/10 bg-white focus:border-orange focus:outline-none transition-colors text-charcoal"
-                                    placeholder="John Doe"
+                                    className="w-full px-4 py-3 border border-charcoal/20 bg-transparent focus:border-orange focus:outline-none transition-colors text-charcoal rounded-none"
                                 />
                             </div>
 
                             {/* Email Input */}
                             <div>
-                                <label htmlFor="email" className="block text-sm font-semibold text-charcoal mb-2">
+                                <label htmlFor="email" className="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">
                                     Email Address
                                 </label>
                                 <input
@@ -123,14 +131,13 @@ export default function Contact() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 rounded-xl border-2 border-charcoal/10 bg-white focus:border-orange focus:outline-none transition-colors text-charcoal"
-                                    placeholder="john@example.com"
+                                    className="w-full px-4 py-3 border border-charcoal/20 bg-transparent focus:border-orange focus:outline-none transition-colors text-charcoal rounded-none"
                                 />
                             </div>
 
                             {/* Subject Input */}
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-semibold text-charcoal mb-2">
+                                <label htmlFor="subject" className="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">
                                     Subject
                                 </label>
                                 <input
@@ -140,14 +147,13 @@ export default function Contact() {
                                     value={formData.subject}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 rounded-xl border-2 border-charcoal/10 bg-white focus:border-orange focus:outline-none transition-colors text-charcoal"
-                                    placeholder="Recipe Inquiry"
+                                    className="w-full px-4 py-3 border border-charcoal/20 bg-transparent focus:border-orange focus:outline-none transition-colors text-charcoal rounded-none"
                                 />
                             </div>
 
                             {/* Message Textarea */}
                             <div>
-                                <label htmlFor="message" className="block text-sm font-semibold text-charcoal mb-2">
+                                <label htmlFor="message" className="block text-xs uppercase tracking-widest text-charcoal/60 mb-2">
                                     Message
                                 </label>
                                 <textarea
@@ -156,9 +162,8 @@ export default function Contact() {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    rows={6}
-                                    className="w-full px-4 py-3 rounded-xl border-2 border-charcoal/10 bg-white focus:border-orange focus:outline-none transition-colors text-charcoal resize-none"
-                                    placeholder="Tell us what&rsquo;s on your mind..."
+                                    rows={5}
+                                    className="w-full px-4 py-3 border border-charcoal/20 bg-transparent focus:border-orange focus:outline-none transition-colors text-charcoal resize-none rounded-none"
                                 />
                             </div>
 
@@ -189,19 +194,18 @@ export default function Contact() {
                             <motion.button
                                 type="submit"
                                 disabled={status === "loading"}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full bg-orange text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                whileHover={{ backgroundColor: "rgba(26, 26, 26, 1)", color: "#F5F2EB" }}
+                                className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-charcoal transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3"
                             >
                                 {status === "loading" ? (
                                     <>
-                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                        Sending...
+                                        <div className="w-4 h-4 border border-cream border-t-transparent rounded-full animate-spin" />
+                                        Processing...
                                     </>
                                 ) : (
                                     <>
-                                        <Send className="w-5 h-5" />
-                                        Send Message
+                                        Transmit
+                                        <Send className="w-4 h-4" />
                                     </>
                                 )}
                             </motion.button>
@@ -214,83 +218,65 @@ export default function Contact() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={springConfig}
-                        className="space-y-6"
+                        className="space-y-6 flex flex-col justify-between"
                     >
-                        <div className="bg-gradient-to-br from-orange/10 to-orange/5 rounded-3xl p-8 md:p-10">
-                            <h3 className="text-2xl sm:text-3xl font-bold text-charcoal mb-6">
-                                Contact Information
+                        <div className="border border-charcoal/10 p-8 md:p-12 h-full flex flex-col relative">
+                            {/* Decorative square */}
+                            <div className="absolute top-0 right-0 w-3 h-3 bg-orange m-4" />
+                            
+                            <h3 className="text-3xl font-serif font-medium text-charcoal mb-6">
+                                Information
                             </h3>
-                            <p className="text-charcoal/70 mb-8 leading-relaxed">
-                                Reach out to us through any of these channels. We&rsquo;re always happy to connect
-                                with food enthusiasts and answer your culinary questions!
+                            <p className="text-charcoal/60 font-light mb-12 leading-relaxed">
+                                We welcome inquiries and collaborations. Speak with us.
                             </p>
 
-                            <div className="space-y-4">
+                            <div className="space-y-6 flex-grow">
                                 {contactInfo.map((info, index) => (
-                                    <motion.div
-                                        key={info.label}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ ...springConfig, delay: 0.1 * index }}
-                                        className="group"
-                                    >
+                                    <div key={info.label} className="border-b border-charcoal/10 pb-6 last:border-0">
                                         {info.href ? (
-                                            <a
-                                                href={info.href}
-                                                className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all"
-                                            >
-                                                <div className="flex-shrink-0 w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center group-hover:bg-orange/20 transition-colors">
-                                                    <info.icon className="w-6 h-6 text-orange" />
-                                                </div>
+                                            <a href={info.href} className="flex items-start gap-4 group">
+                                                <info.icon className="w-5 h-5 text-charcoal/40 group-hover:text-orange transition-colors mt-0.5" />
                                                 <div>
-                                                    <div className="text-sm font-semibold text-charcoal/60 mb-1">
+                                                    <div className="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">
                                                         {info.label}
                                                     </div>
-                                                    <div className="text-charcoal font-medium group-hover:text-orange transition-colors">
+                                                    <div className="text-charcoal group-hover:text-orange transition-colors font-serif">
                                                         {info.value}
                                                     </div>
                                                 </div>
                                             </a>
                                         ) : (
-                                            <div className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-md">
-                                                <div className="flex-shrink-0 w-12 h-12 bg-orange/10 rounded-xl flex items-center justify-center">
-                                                    <info.icon className="w-6 h-6 text-orange" />
-                                                </div>
+                                            <div className="flex items-start gap-4">
+                                                <info.icon className="w-5 h-5 text-charcoal/40 mt-0.5" />
                                                 <div>
-                                                    <div className="text-sm font-semibold text-charcoal/60 mb-1">
+                                                    <div className="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">
                                                         {info.label}
                                                     </div>
-                                                    <div className="text-charcoal font-medium">
+                                                    <div className="text-charcoal font-serif">
                                                         {info.value}
                                                     </div>
                                                 </div>
                                             </div>
                                         )}
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Additional CTA or Info */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ ...springConfig, delay: 0.3 }}
-                            className="bg-charcoal text-white rounded-3xl p-8 md:p-10"
-                        >
-                            <h4 className="text-xl sm:text-2xl font-bold mb-4">
-                                Join Our Culinary Community
+                        {/* Minimal CTA */}
+                        <div className="border border-charcoal bg-charcoal text-cream p-8 md:p-12">
+                            <h4 className="text-2xl font-serif font-medium mb-4">
+                                Community
                             </h4>
-                            <p className="text-white/80 mb-6">
-                                Stay updated with our latest recipes, cooking tips, and exclusive content.
-                                Subscribe to our newsletter for weekly inspiration!
+                            <p className="text-cream/60 font-light mb-8 text-sm">
+                                Join the pursuit of culinary mastery. Let us notify you of our findings.
                             </p>
-                            <button className="bg-orange text-white font-bold py-3 px-6 rounded-xl hover:bg-orange/90 transition-colors">
-                                Subscribe Now
+                            <button className="border border-cream/20 hover:border-cream/100 text-xs uppercase tracking-[0.2em] py-3 px-6 transition-colors duration-300 rounded-none w-full text-left flex justify-between items-center group">
+                                <span>Subscribe</span>
+                                <span className="transform translate-x-0 group-hover:translate-x-2 transition-transform">→</span>
                             </button>
-                        </motion.div>
+                        </div>
                     </motion.div>
                 </div>
             </div>
