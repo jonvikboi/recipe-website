@@ -58,7 +58,7 @@ export default function Hero() {
                         </div>
                         
                         <h1 className="text-[5rem] sm:text-[8rem] md:text-[10rem] lg:text-[14rem] font-serif text-charcoal leading-[0.85] tracking-tighter ml-[-0.5rem]">
-                            RECIPEL
+                            MANNA NEST
                         </h1>
                         <p className="mt-8 text-lg sm:text-xl md:text-2xl font-light text-charcoal/60 tracking-wider max-w-xl">
                             The quiet perfection of culinary art. Discover global flavors crafted with timeless discipline.

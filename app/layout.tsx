@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-    title: "Recipel - Culinary Excellence",
+    title: "Manna Nest - Culinary Excellence",
     description: "Discover and create amazing recipes with our curated collection",
 };
 

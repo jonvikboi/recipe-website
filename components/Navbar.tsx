@@ -48,7 +48,7 @@ export default function Navbar() {
                                 style={{ scale: titleScale }}
                                 className="text-xl sm:text-2xl font-serif text-charcoal tracking-tight"
                             >
-                                RECIPEL
+                                MANNA NEST
                             </motion.h2>
                         </div>
 

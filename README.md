@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍽️ RECIPEL
+# 🍽️ Manna Nest
 
 ### *Where Culinary Art Meets Precision*
 
@@ -87,7 +87,7 @@ Built with cutting-edge web technologies and inspired by Apple's iOS 26 design l
 <div align="center">
 
 ### **Hero Section Animation**
-*Massive RECIPEL title shrinks and fades as you scroll, revealing the liquid glass navbar*
+*Massive MANNA NEST title shrinks and fades as you scroll, revealing the liquid glass navbar*
 
 ### **3D Recipe Cards**
 *Hover to see the enhanced parallax tilt effect with ±20° rotation*
@@ -191,7 +191,7 @@ npm start
 ## 📁 Project Structure
 
 ```
-recipel/
+manna-nest/
 ├── 📱 app/
 │   ├── globals.css              # Global styles + CSS variables
 │   ├── layout.tsx               # Root layout (Inter font)
@@ -400,6 +400,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-**[⬆ Back to Top](#-recipel)**
+**[⬆ Back to Top](#-manna-nest)**
 
 </div>

@@ -40,7 +40,7 @@ export default function Contact() {
                     email: formData.email,
                     subject: formData.subject,
                     message: formData.message,
-                    from_name: "Recipel Contact Form",
+                    from_name: "Manna Nest Contact Form",
                 }),
             });
 
