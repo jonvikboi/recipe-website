@@ -67,7 +67,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cream/90 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/90 to-transparent" />
                             </div>
 
                             {/* Content */}

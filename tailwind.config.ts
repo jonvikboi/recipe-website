@@ -9,15 +9,15 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                cream: "var(--color-cream)",
+                cream: "rgb(var(--color-cream-rgb) / <alpha-value>)",
                 orange: {
-                    DEFAULT: "var(--color-orange)",
+                    DEFAULT: "rgb(var(--color-orange-rgb) / <alpha-value>)",
                     burnt: "#8E4631",
                 },
-                charcoal: "var(--color-charcoal)",
-                sage: "var(--color-sage)",
-                gold: "var(--color-gold)",
-                terracotta: "var(--color-orange)",
+                charcoal: "rgb(var(--color-charcoal-rgb) / <alpha-value>)",
+                sage: "rgb(var(--color-sage-rgb) / <alpha-value>)",
+                gold: "rgb(var(--color-gold-rgb) / <alpha-value>)",
+                terracotta: "rgb(var(--color-orange-rgb) / <alpha-value>)",
             },
             fontFamily: {
                 sans: ["var(--font-inter)", "system-ui", "sans-serif"],

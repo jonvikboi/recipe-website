@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-cream: #FAF8F5;
-  --color-orange: #AA5B44; /* Mapped to terracotta */
-  --color-charcoal: #2A2A28;
-  --color-sage: #5B6955;
-  --color-gold: #C2A478;
+  --color-cream-rgb: 250 248 245;
+  --color-orange-rgb: 170 91 68;
+  --color-charcoal-rgb: 42 42 40;
+  --color-sage-rgb: 91 105 85;
+  --color-gold-rgb: 194 164 120;
+
+  --color-cream: rgb(var(--color-cream-rgb));
+  --color-orange: rgb(var(--color-orange-rgb));
+  --color-charcoal: rgb(var(--color-charcoal-rgb));
+  --color-sage: rgb(var(--color-sage-rgb));
+  --color-gold: rgb(var(--color-gold-rgb));
 }
 
 body {
