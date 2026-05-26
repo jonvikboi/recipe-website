@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { Clock, Users, ChefHat } from "lucide-react";
+import { Tag, Truck } from "lucide-react";
 import { Recipe } from "@/lib/recipes";
 import { springConfig } from "@/lib/animation-config";
 
@@ -65,7 +65,7 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
 
                     {/* Difficulty badge - Sage, structural */}
                     <div className="absolute top-0 right-0 px-4 py-2 bg-sage text-xs font-medium tracking-widest text-cream uppercase font-serif">
-                        {recipe.difficulty}
+                        Pre-Order
                     </div>
                 </div>
 
@@ -84,12 +84,12 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                     {/* Meta information */}
                     <div className="flex items-center gap-6 text-xs tracking-widest uppercase text-charcoal/40 font-medium font-serif">
                         <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4 text-sage" />
-                            <span>{recipe.cookTime}</span>
+                            <Tag className="w-4 h-4 text-sage" />
+                            <span>${recipe.price.toFixed(2)}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4 text-sage" />
-                            <span>{recipe.servings} Servings</span>
+                            <Truck className="w-4 h-4 text-sage" />
+                            <span>{recipe.deliveryTime}</span>
                         </div>
                     </div>
                 </div>

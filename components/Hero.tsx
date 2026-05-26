@@ -94,7 +94,7 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.6 }}
-                    className="absolute bottom-10 left-0 w-full opacity-35 mix-blend-multiply"
+                    className="absolute bottom-3 left-0 w-full opacity-35 mix-blend-multiply"
                 >
                     <div 
                         className="h-24 w-full flex items-center overflow-hidden pointer-events-none"

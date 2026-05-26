@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check } from "lucide-react";
+import { X, Check, Tag, Truck, ShoppingBag, Plus, Minus, Calendar, MapPin, User, Leaf } from "lucide-react";
 import Image from "next/image";
 import { Recipe } from "@/lib/recipes";
 import { springConfig } from "@/lib/animation-config";
@@ -13,20 +13,31 @@ interface RecipeDetailProps {
 }
 
 export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
-    const [checkedIngredients, setCheckedIngredients] = useState<Set<string>>(new Set());
+    const [quantity, setQuantity] = useState(1);
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [deliveryDate, setDeliveryDate] = useState("Tomorrow Morning");
+    const [orderStatus, setOrderStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     if (!recipe) return null;
 
-    const toggleIngredient = (id: string) => {
-        setCheckedIngredients(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(id)) {
-                newSet.delete(id);
-            } else {
-                newSet.add(id);
-            }
-            return newSet;
-        });
+    const handlePreOrder = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!name || !address) return;
+        setOrderStatus("submitting");
+        setTimeout(() => {
+            setOrderStatus("success");
+        }, 1500);
+    };
+
+    const handleClose = () => {
+        // Reset states
+        setQuantity(1);
+        setName("");
+        setAddress("");
+        setDeliveryDate("Tomorrow Morning");
+        setOrderStatus("idle");
+        onClose();
     };
 
     return (
@@ -38,14 +49,14 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={onClose}
+                        onClick={handleClose}
                         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
                     />
 
                     {/* Modal */}
                     <motion.div
                         layoutId={`recipe-card-${recipe.id}`}
-                        className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-16 bg-cream rounded-none sm:rounded-3xl overflow-hidden shadow-2xl z-50"
+                        className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-16 bg-cream rounded-none sm:rounded-3xl overflow-hidden shadow-2xl z-50 max-w-6xl mx-auto"
                     >
                         <div className="h-full overflow-y-auto">
                             {/* Close button */}
@@ -53,7 +64,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ ...springConfig, delay: 0.2 }}
-                                onClick={onClose}
+                                onClick={handleClose}
                                 className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-sage hover:text-white transition-colors"
                             >
                                 <X className="w-6 h-6" />
@@ -70,96 +81,252 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                 <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/90 to-transparent" />
                             </div>
 
-                            {/* Content */}
+                            {/* Content Container */}
                             <div className="px-4 sm:px-6 md:px-12 pb-8 md:pb-12 -mt-12 sm:mt-16 md:-mt-20 relative z-10">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ ...springConfig, delay: 0.1 }}
-                                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-3 md:mb-4 tracking-tight"
-                                >
-                                    {recipe.title}
-                                </motion.h1>
-
-                                <motion.p
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ ...springConfig, delay: 0.15 }}
-                                    className="text-base sm:text-lg md:text-xl font-light text-charcoal/60 mb-6 md:mb-8 italic leading-relaxed"
-                                >
-                                    {recipe.description}
-                                </motion.p>
-
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                                    {/* Ingredients */}
+                                
+                                {orderStatus === "success" ? (
+                                    /* Success State View */
                                     <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ ...springConfig, delay: 0.2 }}
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        className="text-center py-12 max-w-xl mx-auto space-y-6"
                                     >
-                                        <h2 className="text-xl sm:text-2xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">Ingredients</h2>
-                                        <ul className="space-y-3">
-                                            {recipe.ingredients.map((ingredient, index) => (
-                                                <motion.li
-                                                    key={ingredient.id}
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ ...springConfig, delay: 0.3 + index * 0.05 }}
-                                                    onClick={() => toggleIngredient(ingredient.id)}
-                                                    className="flex items-start gap-3 cursor-pointer group"
-                                                >
-                                                    <div className="relative mt-1">
-                                                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all ${checkedIngredients.has(ingredient.id)
-                                                            ? 'bg-gold border-gold'
-                                                            : 'border-charcoal/30 group-hover:border-gold'
-                                                            }`}>
-                                                            <AnimatePresence>
-                                                                {checkedIngredients.has(ingredient.id) && (
-                                                                    <motion.div
-                                                                        initial={{ scale: 0 }}
-                                                                        animate={{ scale: 1 }}
-                                                                        exit={{ scale: 0 }}
-                                                                        transition={springConfig}
-                                                                    >
-                                                                        <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                                                                    </motion.div>
-                                                                )}
-                                                            </AnimatePresence>
+                                        <div className="w-20 h-20 bg-sage/10 rounded-full border border-sage flex items-center justify-center mx-auto relative">
+                                            <div className="w-12 h-12 bg-sage/20 rounded-full absolute animate-pulse" />
+                                            <Check className="w-8 h-8 text-sage relative z-10" strokeWidth={3} />
+                                        </div>
+                                        <h2 className="text-3xl sm:text-4xl font-serif font-medium text-charcoal">
+                                            Offering Confirmed
+                                        </h2>
+                                        <p className="text-charcoal/60 leading-relaxed font-light">
+                                            Kind soul, your pre-order for <strong className="text-charcoal font-medium">{recipe.title}</strong> has been registered in the Hearth. We are gathering the finest earth ingredients and will deliver them fresh to your nest.
+                                        </p>
+                                        
+                                        <div className="border border-charcoal/10 p-6 bg-cream/40 rounded-sm text-left text-sm space-y-3 font-serif">
+                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
+                                                <span className="text-charcoal/40">Recipient:</span>
+                                                <span className="text-charcoal font-medium">{name}</span>
+                                            </div>
+                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
+                                                <span className="text-charcoal/40">Nest Address:</span>
+                                                <span className="text-charcoal font-medium max-w-[250px] text-right truncate">{address}</span>
+                                            </div>
+                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
+                                                <span className="text-charcoal/40">Delivery Window:</span>
+                                                <span className="text-charcoal font-medium">{deliveryDate}</span>
+                                            </div>
+                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
+                                                <span className="text-charcoal/40">Quantity:</span>
+                                                <span className="text-charcoal font-medium">{quantity}x</span>
+                                            </div>
+                                            <div className="flex justify-between pt-1 text-base font-semibold">
+                                                <span className="text-charcoal/60">Total Value:</span>
+                                                <span className="text-gold">${(recipe.price * quantity).toFixed(2)}</span>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={handleClose}
+                                            className="px-8 py-3 bg-sage text-cream uppercase font-serif text-sm tracking-widest hover:bg-gold transition-colors duration-300 rounded-none border border-sage hover:border-gold"
+                                        >
+                                            Return to Sanctuary
+                                        </button>
+                                    </motion.div>
+                                ) : (
+                                    /* Main Form and Product details View */
+                                    <>
+                                        <motion.h1
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ ...springConfig, delay: 0.1 }}
+                                            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-3 md:mb-4 tracking-tight"
+                                        >
+                                            {recipe.title}
+                                        </motion.h1>
+
+                                        <motion.p
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ ...springConfig, delay: 0.15 }}
+                                            className="text-base sm:text-lg md:text-xl font-light text-charcoal/60 mb-6 md:mb-12 italic leading-relaxed max-w-3xl"
+                                        >
+                                            {recipe.description}
+                                        </motion.p>
+
+                                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+                                            
+                                            {/* Left Column - Product Information / Sanctuary Standards */}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ ...springConfig, delay: 0.2 }}
+                                                className="lg:col-span-5 space-y-8"
+                                            >
+                                                <div>
+                                                    <h3 className="text-lg font-serif font-medium text-charcoal mb-4 border-b border-charcoal/10 pb-2">
+                                                        Sanctuary Standards
+                                                    </h3>
+                                                    <p className="text-sm font-light text-charcoal/70 leading-relaxed mb-6">
+                                                        Every offering is prepared at our local Hearth with deep intention, using 100% natural, organic ingredients sourced from clean, eco-friendly fields.
+                                                    </p>
+                                                    <ul className="space-y-3 font-serif text-sm text-charcoal/70">
+                                                        <li className="flex items-center gap-3">
+                                                            <Leaf className="w-4 h-4 text-sage" />
+                                                            <span>100% Organic & Clean</span>
+                                                        </li>
+                                                        <li className="flex items-center gap-3">
+                                                            <ShoppingBag className="w-4 h-4 text-sage" />
+                                                            <span>Zero-Waste Kitchen Crafting</span>
+                                                        </li>
+                                                        <li className="flex items-center gap-3">
+                                                            <Truck className="w-4 h-4 text-sage" />
+                                                            <span>Direct Nest Delivery</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div className="border border-charcoal/5 p-6 bg-cream/30 space-y-4 rounded-sm text-sm">
+                                                    <div className="flex justify-between border-b border-charcoal/5 pb-2 font-serif">
+                                                        <span className="text-charcoal/40">Offering Price:</span>
+                                                        <span className="text-charcoal font-semibold">${recipe.price.toFixed(2)}</span>
+                                                    </div>
+                                                    <div className="flex justify-between border-b border-charcoal/5 pb-2 font-serif">
+                                                        <span className="text-charcoal/40">Category:</span>
+                                                        <span className="text-charcoal">{recipe.category}</span>
+                                                    </div>
+                                                    <div className="flex justify-between font-serif">
+                                                        <span className="text-charcoal/40">Delivery Status:</span>
+                                                        <span className="text-sage flex items-center gap-1.5 font-semibold">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-sage animate-ping" />
+                                                            {recipe.deliveryTime}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+
+                                            {/* Right Column - Pre-order Form */}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ ...springConfig, delay: 0.25 }}
+                                                className="lg:col-span-7 border border-charcoal/10 p-6 md:p-10 bg-cream/40"
+                                            >
+                                                <h3 className="text-xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">
+                                                    Place Pre-Order
+                                                </h3>
+                                                
+                                                <form onSubmit={handlePreOrder} className="space-y-6">
+                                                    
+                                                    {/* Quantity Selector */}
+                                                    <div className="flex items-center justify-between border-b border-charcoal/10 pb-4">
+                                                        <div>
+                                                            <label className="block text-xs uppercase tracking-widest text-charcoal/50 font-serif">
+                                                                Quantity
+                                                            </label>
+                                                            <span className="text-xs text-charcoal/45 italic">Select number of portions</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-4">
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors"
+                                                            >
+                                                                <Minus className="w-3.5 h-3.5" />
+                                                            </button>
+                                                            <span className="text-lg font-serif font-semibold text-charcoal min-w-[20px] text-center">
+                                                                {quantity}
+                                                            </span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => setQuantity(prev => prev + 1)}
+                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors"
+                                                            >
+                                                                <Plus className="w-3.5 h-3.5" />
+                                                            </button>
                                                         </div>
                                                     </div>
-                                                    <span className={`text-charcoal/80 ${checkedIngredients.has(ingredient.id) ? 'line-through opacity-50' : ''}`}>
-                                                        <strong>{ingredient.name}</strong> - {ingredient.amount}
-                                                    </span>
-                                                </motion.li>
-                                            ))}
-                                        </ul>
-                                    </motion.div>
 
-                                    {/* Steps */}
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ ...springConfig, delay: 0.25 }}
-                                    >
-                                        <h2 className="text-xl sm:text-2xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">Instructions</h2>
-                                        <ol className="space-y-4">
-                                            {recipe.steps.map((step, index) => (
-                                                <motion.li
-                                                    key={step.id}
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ ...springConfig, delay: 0.35 + index * 0.08 }}
-                                                    className="flex gap-4"
-                                                >
-                                                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-sage/40 bg-sage/5 text-sage flex items-center justify-center font-serif font-semibold text-sm">
-                                                        {step.number}
+                                                    {/* Delivery Date Selection */}
+                                                    <div>
+                                                        <label className="block text-xs uppercase tracking-widest text-charcoal/50 mb-2 font-serif flex items-center gap-1.5">
+                                                            <Calendar className="w-3.5 h-3.5 text-sage" />
+                                                            Delivery Window
+                                                        </label>
+                                                        <select
+                                                            value={deliveryDate}
+                                                            onChange={(e) => setDeliveryDate(e.target.value)}
+                                                            className="w-full px-4 py-3 border border-charcoal/20 bg-cream/70 focus:border-gold focus:outline-none transition-colors text-charcoal rounded-none font-serif text-sm cursor-pointer"
+                                                        >
+                                                            <option value="Tomorrow Morning">Tomorrow Morning (7:00 AM - 10:00 AM)</option>
+                                                            <option value="Saturday Afternoon">Saturday Afternoon (12:00 PM - 3:00 PM)</option>
+                                                            <option value="Sunday Morning">Sunday Morning (8:00 AM - 11:00 AM)</option>
+                                                        </select>
                                                     </div>
-                                                    <p className="text-charcoal/80 pt-1 leading-relaxed">{step.instruction}</p>
-                                                </motion.li>
-                                            ))}
-                                        </ol>
-                                    </motion.div>
-                                </div>
+
+                                                    {/* Name Input */}
+                                                    <div>
+                                                        <label htmlFor="order-name" className="block text-xs uppercase tracking-widest text-charcoal/50 mb-2 font-serif flex items-center gap-1.5">
+                                                            <User className="w-3.5 h-3.5 text-sage" />
+                                                            Your Name
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            id="order-name"
+                                                            value={name}
+                                                            onChange={(e) => setName(e.target.value)}
+                                                            required
+                                                            placeholder="Enter your name"
+                                                            className="w-full px-4 py-3 border border-charcoal/20 bg-cream/70 focus:border-gold focus:outline-none transition-colors text-charcoal rounded-none text-sm font-sans"
+                                                        />
+                                                    </div>
+
+                                                    {/* Delivery Address */}
+                                                    <div>
+                                                        <label htmlFor="order-address" className="block text-xs uppercase tracking-widest text-charcoal/50 mb-2 font-serif flex items-center gap-1.5">
+                                                            <MapPin className="w-3.5 h-3.5 text-sage" />
+                                                            Nest Address (Delivery Destination)
+                                                        </label>
+                                                        <textarea
+                                                            id="order-address"
+                                                            value={address}
+                                                            onChange={(e) => setAddress(e.target.value)}
+                                                            required
+                                                            rows={3}
+                                                            placeholder="Specify delivery address details"
+                                                            className="w-full px-4 py-3 border border-charcoal/20 bg-cream/70 focus:border-gold focus:outline-none transition-colors text-charcoal rounded-none text-sm resize-none font-sans"
+                                                        />
+                                                    </div>
+
+                                                    {/* Submit Pre-order */}
+                                                    <motion.button
+                                                        type="submit"
+                                                        disabled={orderStatus === "submitting"}
+                                                        whileHover={{ backgroundColor: "var(--color-sage)", borderColor: "var(--color-sage)", color: "var(--color-cream)" }}
+                                                        className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-sage transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3 font-serif"
+                                                    >
+                                                        {orderStatus === "submitting" ? (
+                                                            <>
+                                                                <div className="w-4 h-4 border border-cream border-t-transparent rounded-full animate-spin" />
+                                                                Gathering offering...
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                Confirm Pre-Order — ${(recipe.price * quantity).toFixed(2)}
+                                                            </>
+                                                        )}
+                                                    </motion.button>
+
+                                                    <p className="text-[10px] text-charcoal/40 font-serif italic text-center">
+                                                        *Kind notification: Pre-orders are locked in 24 hours prior to preparation to enable organic supply alignment.
+                                                    </p>
+
+                                                </form>
+                                            </motion.div>
+                                            
+                                        </div>
+                                    </>
+                                )}
+
                             </div>
                         </div>
                     </motion.div>
