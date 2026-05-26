@@ -15,18 +15,18 @@ export default function Hero() {
     return (
         <section className="relative h-screen w-full overflow-hidden bg-cream flex items-center">
             {/* Background Texture / Negative Space */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none" 
-                 style={{ backgroundImage: 'radial-gradient(circle at 10% 20%, rgb(218, 60, 39) 0%, transparent 40%)' }} />
+            <div className="absolute inset-0 opacity-20 pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(194, 164, 120, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(91, 105, 85, 0.12) 0%, transparent 50%)' }} />
 
             {/* Decorative Spinning Plate */}
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, rotate: 360 }}
+                animate={{ opacity: 0.45, rotate: 360 }}
                 transition={{ 
                     opacity: { duration: 1.5, ease: "easeOut" },
-                    rotate: { duration: 80, repeat: Infinity, ease: "linear" } 
+                    rotate: { duration: 100, repeat: Infinity, ease: "linear" } 
                 }}
-                className="absolute -top-[5%] -right-[5%] w-[35vh] h-[35vh] sm:w-[45vh] sm:h-[45vh] lg:w-[550px] lg:h-[550px] pointer-events-none z-0 mix-blend-multiply opacity-90"
+                className="absolute -top-[5%] -right-[5%] w-[35vh] h-[35vh] sm:w-[45vh] sm:h-[45vh] lg:w-[550px] lg:h-[550px] pointer-events-none z-0 mix-blend-multiply grayscale sepia hue-rotate-15 contrast-[1.1]"
                 style={{ y: y2 }}
             >
                 <Image 
@@ -50,10 +50,14 @@ export default function Hero() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        {/* Red Accent "Hanko Stamp" style indicator */}
-                        <div className="w-12 h-12 bg-orange flex items-center justify-center mb-8 rounded-sm">
-                            <span className="text-cream text-xs font-bold tracking-widest leading-none rotate-90" style={{ writingMode: 'vertical-rl' }}>
-                                美味
+                        {/* Sacred Nest / Sun Motif */}
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="w-8 h-8 rounded-full border border-gold/60 flex items-center justify-center relative">
+                                <div className="w-4 h-4 rounded-full bg-gold/25 animate-pulse absolute" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                            </div>
+                            <span className="text-gold text-xs uppercase tracking-[0.3em] font-serif">
+                                Sanctuary of Nourishment
                             </span>
                         </div>
                         
@@ -61,7 +65,7 @@ export default function Hero() {
                             MANNA NEST
                         </h1>
                         <p className="mt-8 text-lg sm:text-xl md:text-2xl font-light text-charcoal/60 tracking-wider max-w-xl">
-                            The quiet perfection of culinary art. Discover global flavors crafted with timeless discipline.
+                            Heavenly sustenance, gathered and shared. Discover a sanctuary of recipes designed to nourish both body and spirit.
                         </p>
                     </motion.div>
                 </motion.div>
@@ -78,9 +82,9 @@ export default function Hero() {
                         className="text-right"
                     >
                         <ul className="space-y-4 font-serif text-charcoal/40 text-sm tracking-[0.3em] uppercase">
-                            <li>01 \ Essence</li>
-                            <li>02 \ Balance</li>
-                            <li>03 \ Harmony</li>
+                            <li>01 \ Gather</li>
+                            <li>02 \ Nourish</li>
+                            <li>03 \ Restore</li>
                         </ul>
                     </motion.div>
                 </motion.div>
@@ -90,14 +94,14 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1, delay: 0.6 }}
-                    className="absolute bottom-10 left-0 w-full opacity-30 mix-blend-multiply"
+                    className="absolute bottom-10 left-0 w-full opacity-35 mix-blend-multiply"
                 >
                     <div 
                         className="h-24 w-full flex items-center overflow-hidden pointer-events-none"
                         style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
                     >
                         <CurvedLoop
-                            marqueeText="Curated Excellence · Global Flavors · Timeless Techniques · "
+                            marqueeText="Sanctuary for the Soul · Sacred Earth Harvest · Gathering Around the Hearth · Heavenly Sustenance · "
                             speed={1}
                             curveAmount={0}
                             interactive={false}

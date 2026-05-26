@@ -41,17 +41,17 @@ export default function About() {
     };
 
     const stats = [
-        { icon: ChefHat, value: "15+", label: "Years Experience" },
-        { icon: Award, value: "12", label: "Awards Won" },
-        { icon: Star, value: "500+", label: "Recipes Created" },
-        { icon: Users, value: "10K+", label: "Students Taught" }
+        { icon: ChefHat, value: "15+", label: "Years of Gatherings" },
+        { icon: Award, value: "100%", label: "Earth Ingredients" },
+        { icon: Star, value: "500+", label: "Nourishing Recipes" },
+        { icon: Users, value: "10K+", label: "Souls Nourished" }
     ];
 
     return (
         <section
             ref={sectionRef}
             id="about"
-            className="py-16 sm:py-20 md:py-32 px-4 bg-gradient-to-b from-cream via-orange/5 to-cream overflow-hidden"
+            className="py-16 sm:py-20 md:py-32 px-4 bg-gradient-to-b from-cream via-sage/5 to-cream overflow-hidden"
         >
             <div className="max-w-7xl mx-auto">
                 <motion.div
@@ -62,17 +62,17 @@ export default function About() {
                     className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
                 >
                     <div className="absolute right-0 top-0 w-8 h-8 flex-col justify-between hidden md:flex">
-                        <div className="w-full h-px bg-orange" />
-                        <div className="w-full h-px border-t border-dashed border-orange" />
+                        <div className="w-full h-px bg-gold/50" />
+                        <div className="w-full h-px border-t border-dashed border-gold/30" />
                     </div>
 
                     <h2 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight">
-                        The Artisan
+                        The Sanctuary
                     </h2>
                     
                     <div className="flex items-center gap-6">
-                        <div className="w-12 h-px bg-orange" />
-                        <p className="text-xs tracking-[0.2em] text-charcoal/40 uppercase font-sans">
+                        <div className="w-12 h-px bg-gold" />
+                        <p className="text-xs tracking-[0.2em] text-charcoal/50 uppercase font-serif">
                             Geena Binu Jose
                         </p>
                     </div>
@@ -107,9 +107,9 @@ export default function About() {
                                 transition={{ ...springConfig, delay: 0.3 }}
                                 className="absolute bottom-6 left-6 right-6 bg-cream border border-charcoal/10 p-6 md:p-8 transform origin-bottom"
                             >
-                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange" />
+                                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
                                 <h3 className="text-2xl sm:text-3xl font-serif font-medium text-charcoal mb-2">Geena Binu Jose</h3>
-                                <p className="text-xs tracking-widest text-charcoal/50 uppercase font-sans">Executive Chef & Culinary Artist</p>
+                                <p className="text-xs tracking-widest text-charcoal/50 uppercase font-serif">Culinary Artist & Nourisher</p>
                             </motion.div>
                         </div>
                         </motion.div>
@@ -136,8 +136,8 @@ export default function About() {
                                 best of global flavors with a signature touch that has earned her recognition across
                                 culinary circles worldwide.
                             </p>
-                            <blockquote className="border-l-4 border-orange pl-4 sm:pl-6 py-2 italic text-lg sm:text-xl text-charcoal/70">
-                                &ldquo;Cooking is not just about feeding the body, it&rsquo;s about nourishing the soul with every bite.&rdquo;
+                            <blockquote className="border-l-4 border-gold pl-4 sm:pl-6 py-2 italic text-lg sm:text-xl text-charcoal/70">
+                                &ldquo;Cooking is the physical manifestation of prayer. We gather grains, water, and herbs to create a sanctuary of nourishment.&rdquo;
                             </blockquote>
                         </motion.div>
 
@@ -152,8 +152,8 @@ export default function About() {
                                     whileHover={{ backgroundColor: "rgba(253, 252, 240, 1)" }}
                                     className="bg-cream p-6 sm:p-8 flex flex-col justify-center transition-colors relative group"
                                 >
-                                    <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-orange/0 group-hover:border-orange/100 transition-colors m-2" />
-                                    <stat.icon className="w-5 h-5 text-orange mb-4 opacity-50 stroke-1" />
+                                    <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-gold/0 group-hover:border-gold/100 transition-colors m-2" />
+                                    <stat.icon className="w-5 h-5 text-gold mb-4 opacity-50 stroke-1" />
                                     <div className="text-3xl sm:text-4xl font-serif font-medium text-charcoal mb-2">
                                         {stat.value}
                                     </div>

@@ -63,8 +63,8 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                         className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                     />
 
-                    {/* Difficulty badge - Sharp, structural */}
-                    <div className="absolute top-0 right-0 px-4 py-2 bg-charcoal text-xs font-medium tracking-widest text-cream uppercase">
+                    {/* Difficulty badge - Sage, structural */}
+                    <div className="absolute top-0 right-0 px-4 py-2 bg-sage text-xs font-medium tracking-widest text-cream uppercase font-serif">
                         {recipe.difficulty}
                     </div>
                 </div>
@@ -72,9 +72,9 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                 {/* Minimalist Info Section */}
                 <div className="p-6 md:p-8 bg-cream border-t border-charcoal/10 relative">
                     {/* Vertical decorative accent */}
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-orange transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out" />
                     
-                    <h3 className="text-2xl sm:text-3xl font-serif font-medium mb-3 text-charcoal group-hover:text-orange transition-colors duration-500">
+                    <h3 className="text-2xl sm:text-3xl font-serif font-medium mb-3 text-charcoal group-hover:text-gold transition-colors duration-500">
                         {recipe.title}
                     </h3>
                     <p className="text-charcoal/60 text-sm md:text-base font-light mb-6 line-clamp-2 leading-relaxed">
@@ -82,14 +82,14 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                     </p>
 
                     {/* Meta information */}
-                    <div className="flex items-center gap-6 text-xs tracking-widest uppercase text-charcoal/40 font-medium">
+                    <div className="flex items-center gap-6 text-xs tracking-widest uppercase text-charcoal/40 font-medium font-serif">
                         <div className="flex items-center gap-2">
-                            <Clock className="w-4 h-4" />
+                            <Clock className="w-4 h-4 text-sage" />
                             <span>{recipe.cookTime}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Users className="w-4 h-4" />
-                            <span>{recipe.servings}</span>
+                            <Users className="w-4 h-4 text-sage" />
+                            <span>{recipe.servings} Servings</span>
                         </div>
                     </div>
                 </div>

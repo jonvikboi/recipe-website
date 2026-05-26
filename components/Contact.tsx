@@ -78,17 +78,17 @@ export default function Contact() {
                     className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
                 >
                     <div className="absolute right-0 top-0 w-8 h-8 flex-col justify-between hidden md:flex">
-                        <div className="w-full h-px bg-orange" />
-                        <div className="w-full h-px border-t border-dashed border-orange" />
+                        <div className="w-full h-px bg-gold/50" />
+                        <div className="w-full h-px border-t border-dashed border-gold/30" />
                     </div>
 
                     <h2 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight">
-                        Connect
+                        Gather
                     </h2>
                     
                     <div className="flex items-center gap-6">
-                        <div className="w-12 h-px bg-orange" />
-                        <p className="text-xs tracking-[0.2em] text-charcoal/40 uppercase font-sans">
+                        <div className="w-12 h-px bg-gold" />
+                        <p className="text-xs tracking-[0.2em] text-charcoal/50 uppercase font-serif">
                             Reach Out
                         </p>
                     </div>
@@ -194,17 +194,17 @@ export default function Contact() {
                             <motion.button
                                 type="submit"
                                 disabled={status === "loading"}
-                                whileHover={{ backgroundColor: "rgba(26, 26, 26, 1)", color: "#F5F2EB" }}
-                                className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-charcoal transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3"
+                                whileHover={{ backgroundColor: "var(--color-sage)", borderColor: "var(--color-sage)", color: "var(--color-cream)" }}
+                                className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-sage transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3 font-serif"
                             >
                                 {status === "loading" ? (
                                     <>
                                         <div className="w-4 h-4 border border-cream border-t-transparent rounded-full animate-spin" />
-                                        Processing...
+                                        Gathering...
                                     </>
                                 ) : (
                                     <>
-                                        Transmit
+                                        Send Message
                                         <Send className="w-4 h-4" />
                                     </>
                                 )}
@@ -220,15 +220,15 @@ export default function Contact() {
                         transition={springConfig}
                         className="space-y-6 flex flex-col justify-between"
                     >
-                        <div className="border border-charcoal/10 p-8 md:p-12 h-full flex flex-col relative">
+                        <div className="border border-charcoal/10 p-8 md:p-12 h-full flex flex-col relative bg-cream/40">
                             {/* Decorative square */}
-                            <div className="absolute top-0 right-0 w-3 h-3 bg-orange m-4" />
+                            <div className="absolute top-0 right-0 w-3 h-3 bg-gold m-4" />
                             
                             <h3 className="text-3xl font-serif font-medium text-charcoal mb-6">
-                                Information
+                                Sanctuary Info
                             </h3>
                             <p className="text-charcoal/60 font-light mb-12 leading-relaxed">
-                                We welcome inquiries and collaborations. Speak with us.
+                                We welcome inquiries, collaborations, and kindred spirits.
                             </p>
 
                             <div className="space-y-6 flex-grow">
@@ -236,12 +236,12 @@ export default function Contact() {
                                     <div key={info.label} className="border-b border-charcoal/10 pb-6 last:border-0">
                                         {info.href ? (
                                             <a href={info.href} className="flex items-start gap-4 group">
-                                                <info.icon className="w-5 h-5 text-charcoal/40 group-hover:text-orange transition-colors mt-0.5" />
+                                                <info.icon className="w-5 h-5 text-charcoal/40 group-hover:text-gold transition-colors mt-0.5" />
                                                 <div>
                                                     <div className="text-[10px] uppercase tracking-widest text-charcoal/40 mb-1">
                                                         {info.label}
                                                     </div>
-                                                    <div className="text-charcoal group-hover:text-orange transition-colors font-serif">
+                                                    <div className="text-charcoal group-hover:text-gold transition-colors font-serif">
                                                         {info.value}
                                                     </div>
                                                 </div>

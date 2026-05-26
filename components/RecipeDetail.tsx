@@ -54,7 +54,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ ...springConfig, delay: 0.2 }}
                                 onClick={onClose}
-                                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange hover:text-white transition-colors"
+                                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-sage hover:text-white transition-colors"
                             >
                                 <X className="w-6 h-6" />
                             </motion.button>
@@ -67,7 +67,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                     fill
                                     className="object-cover"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cream/80 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-cream/90 to-transparent" />
                             </div>
 
                             {/* Content */}
@@ -76,7 +76,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...springConfig, delay: 0.1 }}
-                                    className="text-3xl sm:text-4xl md:text-5xl font-black text-charcoal mb-3 md:mb-4"
+                                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-charcoal mb-3 md:mb-4 tracking-tight"
                                 >
                                     {recipe.title}
                                 </motion.h1>
@@ -85,7 +85,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ ...springConfig, delay: 0.15 }}
-                                    className="text-base sm:text-lg md:text-xl text-charcoal/70 mb-6 md:mb-8"
+                                    className="text-base sm:text-lg md:text-xl font-light text-charcoal/60 mb-6 md:mb-8 italic leading-relaxed"
                                 >
                                     {recipe.description}
                                 </motion.p>
@@ -97,7 +97,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ ...springConfig, delay: 0.2 }}
                                     >
-                                        <h2 className="text-xl sm:text-2xl font-bold text-charcoal mb-4">Ingredients</h2>
+                                        <h2 className="text-xl sm:text-2xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">Ingredients</h2>
                                         <ul className="space-y-3">
                                             {recipe.ingredients.map((ingredient, index) => (
                                                 <motion.li
@@ -109,9 +109,9 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                     className="flex items-start gap-3 cursor-pointer group"
                                                 >
                                                     <div className="relative mt-1">
-                                                        <div className={`w-5 h-5 border-2 rounded flex items-center justify-center transition-all ${checkedIngredients.has(ingredient.id)
-                                                            ? 'bg-orange border-orange'
-                                                            : 'border-charcoal/30 group-hover:border-orange'
+                                                        <div className={`w-5 h-5 border-2 rounded-full flex items-center justify-center transition-all ${checkedIngredients.has(ingredient.id)
+                                                            ? 'bg-gold border-gold'
+                                                            : 'border-charcoal/30 group-hover:border-gold'
                                                             }`}>
                                                             <AnimatePresence>
                                                                 {checkedIngredients.has(ingredient.id) && (
@@ -141,7 +141,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ ...springConfig, delay: 0.25 }}
                                     >
-                                        <h2 className="text-xl sm:text-2xl font-bold text-charcoal mb-4">Instructions</h2>
+                                        <h2 className="text-xl sm:text-2xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">Instructions</h2>
                                         <ol className="space-y-4">
                                             {recipe.steps.map((step, index) => (
                                                 <motion.li
@@ -151,10 +151,10 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                     transition={{ ...springConfig, delay: 0.35 + index * 0.08 }}
                                                     className="flex gap-4"
                                                 >
-                                                    <div className="flex-shrink-0 w-8 h-8 bg-orange text-white rounded-full flex items-center justify-center font-bold text-sm">
+                                                    <div className="flex-shrink-0 w-8 h-8 rounded-full border border-sage/40 bg-sage/5 text-sage flex items-center justify-center font-serif font-semibold text-sm">
                                                         {step.number}
                                                     </div>
-                                                    <p className="text-charcoal/80 pt-1">{step.instruction}</p>
+                                                    <p className="text-charcoal/80 pt-1 leading-relaxed">{step.instruction}</p>
                                                 </motion.li>
                                             ))}
                                         </ol>

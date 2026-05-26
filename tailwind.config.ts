@@ -9,12 +9,15 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                cream: "#F5F2EB", // Washi Paper
+                cream: "var(--color-cream)",
                 orange: {
-                    DEFAULT: "#DA3C27", // Urushi Lacquer Red
-                    burnt: "#C22A17",
+                    DEFAULT: "var(--color-orange)",
+                    burnt: "#8E4631",
                 },
-                charcoal: "#1A1A1A", // Sumi Ink
+                charcoal: "var(--color-charcoal)",
+                sage: "var(--color-sage)",
+                gold: "var(--color-gold)",
+                terracotta: "var(--color-orange)",
             },
             fontFamily: {
                 sans: ["var(--font-inter)", "system-ui", "sans-serif"],

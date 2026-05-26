@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --color-cream: #F5F2EB;
-  --color-orange: #DA3C27;
-  --color-charcoal: #1A1A1A;
+  --color-cream: #FAF8F5;
+  --color-orange: #AA5B44; /* Mapped to terracotta */
+  --color-charcoal: #2A2A28;
+  --color-sage: #5B6955;
+  --color-gold: #C2A478;
 }
 
 body {
@@ -14,11 +16,9 @@ body {
   overflow-x: hidden;
 }
 
-/* Grain texture utility removed - now using GlassSurface component */
-
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -26,12 +26,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-orange);
-  border-radius: 5px;
+  background: var(--color-sage);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d67019;
+  background: var(--color-gold);
 }
 
 /* Smooth scroll behavior */

@@ -40,7 +40,7 @@ export default function Navbar() {
                             {/* Minimalist Logo Mark */}
                             <motion.div
                                 style={{ scale: titleScale }}
-                                className="w-2 h-2 sm:w-3 sm:h-3 bg-orange mt-1 hidden sm:block"
+                                className="w-2.5 h-2.5 rounded-full border border-gold bg-gold/25 mt-0.5 hidden sm:block"
                             />
 
                             {/* Brand name */}
@@ -69,10 +69,10 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
     return (
         <a
             href={href}
-            className="text-xs uppercase tracking-[0.2em] text-charcoal/60 hover:text-orange transition-colors duration-300 relative group"
+            className="text-xs uppercase tracking-[0.2em] text-charcoal/60 hover:text-gold transition-colors duration-300 relative group"
         >
             {children}
-            <span className="absolute -bottom-1 left-0 w-full h-px bg-orange scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+            <span className="absolute -bottom-1 left-0 w-full h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
         </a>
     );
 }
