@@ -21,12 +21,12 @@ export default function Hero() {
             {/* Decorative Spinning Plate */}
             <motion.div
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.45, rotate: 360 }}
+                animate={{ opacity: 0.9, rotate: 360 }}
                 transition={{ 
                     opacity: { duration: 1.5, ease: "easeOut" },
                     rotate: { duration: 100, repeat: Infinity, ease: "linear" } 
                 }}
-                className="absolute -top-[5%] -right-[5%] w-[35vh] h-[35vh] sm:w-[45vh] sm:h-[45vh] lg:w-[550px] lg:h-[550px] pointer-events-none z-0 mix-blend-multiply grayscale sepia hue-rotate-15 contrast-[1.1]"
+                className="absolute -top-[5%] -right-[5%] w-[35vh] h-[35vh] sm:w-[45vh] sm:h-[45vh] lg:w-[550px] lg:h-[550px] pointer-events-none z-0 mix-blend-multiply"
                 style={{ y: y2 }}
             >
                 <Image 
