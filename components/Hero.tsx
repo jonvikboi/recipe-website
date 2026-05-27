@@ -50,11 +50,16 @@ export default function Hero() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        {/* Sacred Nest / Sun Motif */}
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-8 h-8 rounded-full border border-gold/60 flex items-center justify-center relative">
-                                <div className="w-4 h-4 rounded-full bg-gold/25 animate-pulse absolute" />
-                                <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+                        {/* Logo Mark - Inline layout to prevent vertical crowding */}
+                        <div className="flex items-center gap-4 mb-6 mt-4">
+                            <div className="relative w-16 h-16 md:w-20 md:h-20">
+                                <Image
+                                    src="/images/manna.png"
+                                    alt="Manna Nest Logo"
+                                    fill
+                                    className="object-contain"
+                                    priority
+                                />
                             </div>
                             <span className="text-gold text-xs uppercase tracking-[0.3em] font-serif">
                                 Sanctuary of Nourishment
@@ -89,28 +94,28 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Bottom Ticker - Very Subtle */}
-                <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    className="absolute bottom-3 left-0 w-full opacity-35 mix-blend-multiply"
-                >
-                    <div 
-                        className="h-24 w-full flex items-center overflow-hidden pointer-events-none"
-                        style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
-                    >
-                        <CurvedLoop
-                            marqueeText="Sanctuary for the Soul · Sacred Earth Harvest · Gathering Around the Hearth · Heavenly Sustenance · "
-                            speed={1}
-                            curveAmount={0}
-                            interactive={false}
-                            className="fill-charcoal"
-                        />
-                    </div>
-                </motion.div>
-
             </div>
+
+            {/* Bottom Ticker - Very Subtle */}
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="absolute bottom-6 left-0 w-full opacity-35 mix-blend-multiply z-20"
+            >
+                <div 
+                    className="h-24 w-full flex items-center overflow-hidden pointer-events-none"
+                    style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
+                >
+                    <CurvedLoop
+                        marqueeText="Sanctuary for the Soul · Sacred Earth Harvest · Gathering Around the Hearth · Heavenly Sustenance · "
+                        speed={1}
+                        curveAmount={0}
+                        interactive={false}
+                        className="fill-charcoal"
+                    />
+                </div>
+            </motion.div>
         </section>
     );
 }
