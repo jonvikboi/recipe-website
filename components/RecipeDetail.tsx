@@ -71,14 +71,30 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                             </motion.button>
 
                             {/* Hero image */}
-                            <div className="relative h-48 sm:h-64 md:h-72 lg:h-96 w-full">
-                                <Image
-                                    src={recipe.image}
-                                    alt={recipe.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/90 to-transparent" />
+                            <div className="relative h-48 sm:h-64 md:h-72 lg:h-96 w-full bg-cream border-b border-charcoal/5 flex items-center justify-center overflow-hidden">
+                                {recipe.image ? (
+                                    <>
+                                        <Image
+                                            src={recipe.image}
+                                            alt={recipe.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/90 to-transparent" />
+                                    </>
+                                ) : (
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-cream via-sage/5 to-cream flex flex-col items-center justify-center p-8 text-center select-none">
+                                        <div className="w-20 h-20 rounded-full border border-gold/30 flex items-center justify-center relative mb-4">
+                                            <div className="w-14 h-14 rounded-full bg-gold/5 animate-pulse absolute" />
+                                            <svg className="w-8 h-8 text-gold stroke-[1.25]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-sm uppercase tracking-[0.3em] font-serif text-charcoal/40 mb-1">Manna Nest</span>
+                                        <span className="text-xs uppercase tracking-widest text-gold font-sans font-medium">Awaiting Kitchen Picture</span>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/80 to-transparent pointer-events-none" />
+                                    </div>
+                                )}
                             </div>
 
                             {/* Content Container */}
@@ -121,7 +137,9 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                             </div>
                                             <div className="flex justify-between pt-1 text-base font-semibold">
                                                 <span className="text-charcoal/60">Total Value:</span>
-                                                <span className="text-gold">${(recipe.price * quantity).toFixed(2)}</span>
+                                                <span className="text-gold">
+                                                    {recipe.price !== undefined ? `₹${(recipe.price * quantity).toFixed(2)}` : "₹ Price on Request"}
+                                                </span>
                                             </div>
                                         </div>
 
@@ -188,7 +206,9 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                 <div className="border border-charcoal/5 p-6 bg-cream/30 space-y-4 rounded-sm text-sm">
                                                     <div className="flex justify-between border-b border-charcoal/5 pb-2 font-serif">
                                                         <span className="text-charcoal/40">Offering Price:</span>
-                                                        <span className="text-charcoal font-semibold">${recipe.price.toFixed(2)}</span>
+                                                        <span className="text-charcoal font-semibold">
+                                                            {recipe.price !== undefined ? `₹${recipe.price.toFixed(2)}` : "₹ Price on Request"}
+                                                        </span>
                                                     </div>
                                                     <div className="flex justify-between border-b border-charcoal/5 pb-2 font-serif">
                                                         <span className="text-charcoal/40">Category:</span>
@@ -311,7 +331,10 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                             </>
                                                         ) : (
                                                             <>
-                                                                Confirm Pre-Order — ${(recipe.price * quantity).toFixed(2)}
+                                                                {recipe.price !== undefined 
+                                                                    ? `Confirm Pre-Order — ₹${(recipe.price * quantity).toFixed(2)}`
+                                                                    : "Confirm Pre-Order (₹ Price on Request)"
+                                                                }
                                                             </>
                                                         )}
                                                     </motion.button>

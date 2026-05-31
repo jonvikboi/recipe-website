@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Recipe } from "@/lib/recipes";
 import RecipeCard from "./RecipeCard";
 import { staggerContainerVariants, fadeInVariants } from "@/lib/animation-config";
@@ -11,14 +12,21 @@ interface RecipeGridProps {
 }
 
 export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) {
+    const [activeCategory, setActiveCategory] = useState<"All" | "Mains" | "Dishes" | "Snacks" | "Desserts">("All");
+
+    const filteredRecipes = activeCategory === "All"
+        ? recipes
+        : recipes.filter((recipe) => recipe.category === activeCategory);
+
     return (
-        <section id="recipes" className="py-12 sm:py-16 md:py-24 px-4 max-w-7xl mx-auto">
+        <section id="recipes" className="py-12 sm:py-16 md:py-24 px-4 max-w-7xl mx-auto min-h-[800px]">
+            {/* Header section */}
             <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={staggerContainerVariants}
-                className="mb-16 md:mb-24 text-left border-b border-charcoal/10 pb-8 relative"
+                className="mb-16 md:mb-20 text-left border-b border-charcoal/10 pb-8 relative"
             >
                 <div className="absolute right-0 top-0 w-8 h-8 flex flex-col justify-between hidden md:flex">
                     <div className="w-full h-px bg-gold/50" />
@@ -42,23 +50,59 @@ export default function RecipeGrid({ recipes, onRecipeClick }: RecipeGridProps) 
                 </motion.div>
             </motion.div>
 
-            <motion.div
+            {/* Category Filter Navigation */}
+            <motion.div 
+                variants={fadeInVariants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={staggerContainerVariants}
+                viewport={{ once: true }}
+                className="flex flex-wrap items-center justify-start gap-x-8 gap-y-4 mb-16 pb-4 border-b border-charcoal/5"
+            >
+                {(["All", "Mains", "Dishes", "Snacks", "Desserts"] as const).map((category) => {
+                    const isActive = activeCategory === category;
+                    return (
+                        <button
+                            key={category}
+                            onClick={() => setActiveCategory(category)}
+                            className="relative py-2 px-1 text-xs font-serif uppercase tracking-[0.25em] transition-colors duration-300 focus:outline-none cursor-pointer"
+                            style={{ color: isActive ? "var(--color-gold)" : "rgba(250, 248, 245, 0.5)" }} // Fallback check or standard text-charcoal
+                        >
+                            <span className={`relative z-10 transition-colors duration-300 ${isActive ? "text-gold font-medium" : "text-charcoal/55 hover:text-charcoal"}`}>
+                                {category}
+                            </span>
+                            {isActive && (
+                                <motion.div
+                                    layoutId="activeCategoryUnderline"
+                                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold"
+                                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                />
+                            )}
+                        </button>
+                    );
+                })}
+            </motion.div>
+
+            {/* Grid display */}
+            <motion.div
+                layout
                 className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 md:gap-y-0"
                 style={{ gridAutoFlow: 'dense' }}
             >
-                {recipes.map((recipe, index) => (
-                    <motion.div 
-                        key={recipe.id} 
-                        variants={fadeInVariants}
-                        className={index % 2 === 1 ? "md:mt-32" : "md:mt-0 md:mb-32"}
-                    >
-                        <RecipeCard recipe={recipe} onClick={() => onRecipeClick(recipe)} />
-                    </motion.div>
-                ))}
+                <AnimatePresence mode="popLayout">
+                    {filteredRecipes.map((recipe, index) => (
+                        <motion.div 
+                            key={recipe.id}
+                            layout
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                            className={index % 2 === 1 ? "md:mt-32" : "md:mt-0 md:mb-32"}
+                        >
+                            <RecipeCard recipe={recipe} onClick={() => onRecipeClick(recipe)} />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </motion.div>
         </section>
     );

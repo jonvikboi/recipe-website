@@ -3,64 +3,161 @@ export interface Recipe {
     title: string;
     description: string;
     image: string;
-    price: number;
-    category: "Mains" | "Sides" | "Desserts";
+    price?: number;
+    category: "Mains" | "Dishes" | "Snacks" | "Desserts";
     deliveryTime: string;
 }
 
 export const recipes: Recipe[] = [
+    // --- MAINS ---
     {
         id: "1",
-        title: "Sacred Herb Grilled Salmon",
-        description: "Fresh line-caught salmon fillet infused with hand-gathered garden herbs, organic lemon, and first-press cold olive oil. Prepared at the Hearth.",
-        image: "/images/salmon.jpg",
-        price: 28.00,
+        title: "Appam",
+        description: "Soft and fluffy bowl-shaped fermented rice pancakes with a thick, spongy center and crisp, delicate, lace-like golden edges. Crafted with fresh coconut milk.",
+        image: "",
         category: "Mains",
-        deliveryTime: "Delivered Warm"
+        deliveryTime: "Delivered Fresh & Warm"
     },
     {
         id: "2",
-        title: "Wild Forest Truffle Risotto",
-        description: "Creamy, stone-ground Arborio rice simmered slow in organic vegetable broth, enriched with wild forest mushrooms and premium black truffle oil.",
-        image: "/images/risotto.jpg",
-        price: 22.00,
+        title: "Idiyappam",
+        description: "Delicate, light, and fluffy steamed rice noodle nests (string hoppers). A timeless, gentle breakfast staple that pairs beautifully with stews.",
+        image: "",
         category: "Mains",
-        deliveryTime: "Delivered Warm"
+        deliveryTime: "Delivered Fresh & Warm"
     },
     {
         id: "3",
-        title: "Holy Basil Stir-Fried Chicken",
-        description: "Spicy stir-fried pasture-raised chicken cooked over open flame, loaded with sacred holy basil leaves, fresh chilies, and aromatic garlic.",
-        image: "/images/thai-chicken.jpg",
-        price: 19.50,
+        title: "Kallappam",
+        description: "Traditional spongy pan-cooked rice pancakes fermented with yeast and flavored with freshly grated coconut, aromatic cumin seeds, and shallots.",
+        image: "",
         category: "Mains",
-        deliveryTime: "Delivered Warm"
+        deliveryTime: "Delivered Fresh & Warm"
     },
+
+    // --- DISHES ---
     {
         id: "4",
-        title: "Decadent Molten Cocoa Cake",
-        description: "A warm, decadent cake crafted with single-origin fair trade dark chocolate, featuring a rich, molten liquid cocoa center that flows like liquid gold.",
-        image: "/images/lava-cake.jpg",
-        price: 14.00,
-        category: "Desserts",
-        deliveryTime: "Delivered Fresh"
+        title: "Chicken Stew",
+        description: "Tender chicken cooked with potatoes and sweet carrots in a delicately spiced, velvety coconut milk gravy, flavored with ginger, green chilies, and fresh curry leaves.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Hot"
     },
     {
         id: "5",
-        title: "Sun-Dried Apricot Lamb Tagine",
-        description: "Grass-fed lamb shoulder slow-braised for two hours with sweet sun-dried apricots, chickpeas, toasted almonds, and our proprietary house Ras el Hanout spice blend.",
-        image: "/images/tagine.jpg",
-        price: 32.00,
-        category: "Mains",
-        deliveryTime: "Delivered Warm"
+        title: "Meat Curry",
+        description: "Succulent, slow-cooked meat simmered in a deeply aromatic, dark roasted coconut gravy with traditional Malabar spices, ginger, and caramelized onions.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Hot"
     },
     {
         id: "6",
-        title: "Sacred Earth Caprese Burrata",
-        description: "Creamy, hand-stretched burrata cheese paired with fresh heirloom tomatoes, tender organic basil leaves, flaky sea salt, and a drizzle of rich balsamic glaze.",
-        image: "/images/caprese.jpg",
-        price: 16.50,
-        category: "Sides",
+        title: "Fish Curry",
+        description: "A tangy, authentic red fish curry cooked in a traditional clay pot, infused with smoky Kudampuli (Malabar tamarind), ginger, and fresh curry leaves.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Hot"
+    },
+    {
+        id: "7",
+        title: "Vegetable Stew",
+        description: "A comforting blend of fresh farm vegetables slowly simmered in rich, aromatic coconut milk, spiced gently with green cardamom, cloves, and ginger.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Hot"
+    },
+    {
+        id: "8",
+        title: "Meat Fry",
+        description: "A classic dry-roasted delicacy. Tender meat slow-cooked with spices, then roasted to dark, caramelized perfection with coconut slices and curry leaves in pure coconut oil.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Warm"
+    },
+    {
+        id: "9",
+        title: "Chicken Fry",
+        description: "Crispy and juicy deep-fried chicken marinated in a robust, traditional blend of red chilies, turmeric, ginger-garlic paste, and fresh curry leaves.",
+        image: "",
+        category: "Dishes",
+        deliveryTime: "Delivered Warm"
+    },
+
+    // --- SNACKS ---
+    {
+        id: "10",
+        title: "Ulli Vada",
+        description: "Crispy, golden deep-fried onion fritters seasoned with ginger, fresh green chilies, and hand-torn curry leaves. The perfect tea-time comfort.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Fresh & Crispy"
+    },
+    {
+        id: "11",
+        title: "Uzhunnu Vada",
+        description: "Golden, doughnut-shaped savory fritters made from a light, fluffy black gram (urad dal) batter. Crispy outside, pillowy-soft inside.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Fresh & Crispy"
+    },
+    {
+        id: "12",
+        title: "Parippu Vada",
+        description: "Crunchy, spicy lentil patties crafted from coarsely ground chana dal, infused with chopped shallots, fiery green chilies, ginger, and curry leaves.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Fresh & Crispy"
+    },
+    {
+        id: "13",
+        title: "Achappam",
+        description: "Intricately flower-shaped, sweet and ultra-crispy rose cookies. Made from rice flour, fresh coconut milk, sugar, and sprinkled with black sesame seeds.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Fresh"
+    },
+    {
+        id: "14",
+        title: "Unniappam",
+        description: "Small, golden-brown sweet fritters fried in a traditional stone vessel. Fermented rice batter blended with sweet jaggery, ripe banana, and ghee-fried coconut bites.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Fresh & Warm"
+    },
+    {
+        id: "15",
+        title: "Chicken Cutlet",
+        description: "Delectable, spiced croquettes made of minced chicken and potato, seasoned with garam masala, coated in breadcrumbs, and shallow-fried to perfection.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Warm"
+    },
+    {
+        id: "16",
+        title: "Meat Cutlet",
+        description: "Traditional Malabar-style savory patties made with minced meat, potato, black pepper, and warm spices, fried to a delicious golden crunch.",
+        image: "",
+        category: "Snacks",
+        deliveryTime: "Delivered Warm"
+    },
+
+    // --- DESSERTS ---
+    {
+        id: "17",
+        title: "Payasam",
+        description: "The royal dessert of Kerala. A rich, warm, and luxurious sweet pudding cooked with rice flakes (Ada), sweet jaggery, and creamy coconut milk, finished with cashews.",
+        image: "",
+        category: "Desserts",
+        deliveryTime: "Delivered Warm"
+    },
+    {
+        id: "18",
+        title: "Pudding",
+        description: "A smooth, refreshing, and velvety Tender Coconut (Karikku) pudding, chilled to perfection. Sweetened coconut cream and tender coconut pulp set in delicate molds.",
+        image: "",
+        category: "Desserts",
         deliveryTime: "Delivered Chilled"
     }
 ];

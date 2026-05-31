@@ -41,10 +41,10 @@ export default function About() {
     };
 
     const stats = [
-        { icon: ChefHat, value: "15+", label: "Years of Gatherings" },
-        { icon: Award, value: "100%", label: "Earth Ingredients" },
-        { icon: Star, value: "500+", label: "Nourishing Recipes" },
-        { icon: Users, value: "10K+", label: "Souls Nourished" }
+        { icon: ChefHat, value: "15+", label: "Years of Family Meals" },
+        { icon: Award, value: "100%", label: "Made From Scratch" },
+        { icon: Star, value: "50+", label: "Perfected Family Recipes" },
+        { icon: Users, value: "Daily", label: "Nourished with Care" }
     ];
 
     return (
@@ -92,7 +92,7 @@ export default function About() {
                         <div className="relative h-[500px] sm:h-[600px] md:h-[700px] rounded-none overflow-hidden border border-charcoal/10 group-hover:border-charcoal/30 transition-colors duration-500">
                             <Image
                                 src="/images/chef-geena.jpg"
-                                alt="Chef Geena Binu Jose"
+                                alt="Geena Binu Jose"
                                 fill
                                 className="object-cover grayscale group-hover:grayscale-0 transition-transform duration-700"
                             />
@@ -109,7 +109,7 @@ export default function About() {
                             >
                                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
                                 <h3 className="text-2xl sm:text-3xl font-serif font-medium text-charcoal mb-2">Geena Binu Jose</h3>
-                                <p className="text-xs tracking-widest text-charcoal/50 uppercase font-serif">Culinary Artist & Nourisher</p>
+                                <p className="text-xs tracking-widest text-charcoal/50 uppercase font-serif">Homemaker & Passionate Cook</p>
                             </motion.div>
                         </div>
                         </motion.div>
@@ -127,18 +127,11 @@ export default function About() {
                             transition={{ ...springConfig, delay: 0.2 }}
                         >
                             <p className="text-base sm:text-lg text-charcoal/80 leading-relaxed mb-4">
-                                With over 15 years of culinary expertise, Chef Geena Binu Jose has mastered the art of
-                                blending traditional techniques with modern innovation. Her journey began in the kitchens
-                                of Kerala, where she learned the importance of authentic flavors and fresh ingredients.
+                                Geena Binu Jose is a homemaker whose true joy lies in cooking wholesome, delicious meals for her loved ones. For over 15 years, her home kitchen has been a gathering place where simple, fresh ingredients are turned into comforting daily feasts.
                             </p>
                             <p className="text-base sm:text-lg text-charcoal/80 leading-relaxed mb-4">
-                                Today, she specializes in Mediterranean and Asian fusion cuisine, bringing together the
-                                best of global flavors with a signature touch that has earned her recognition across
-                                culinary circles worldwide.
+                                What began as simple daily cooking for her household has grown into a life-long passion for perfecting home-cooked flavors. From traditional regional comfort food to warm, freshly baked loaves, her kitchen provides honest food made from scratch, filled with warmth and care.
                             </p>
-                            <blockquote className="border-l-4 border-gold pl-4 sm:pl-6 py-2 italic text-lg sm:text-xl text-charcoal/70">
-                                &ldquo;Cooking is the physical manifestation of prayer. We gather grains, water, and herbs to create a sanctuary of nourishment.&rdquo;
-                            </blockquote>
                         </motion.div>
 
                         <div className="grid grid-cols-2 gap-px bg-charcoal/10 mt-12 border border-charcoal/10">

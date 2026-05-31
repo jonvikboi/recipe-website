@@ -55,16 +55,29 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
         >
             <div className="relative bg-cream/50 overflow-hidden border border-charcoal/10 group-hover:border-charcoal/30 transition-colors duration-500">
                 {/* Image Section */}
-                <div className="relative h-[400px] w-full overflow-hidden">
-                    <Image
-                        src={recipe.image}
-                        alt={recipe.title}
-                        fill
-                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                    />
+                <div className="relative h-[400px] w-full overflow-hidden bg-cream border-b border-charcoal/5 flex items-center justify-center">
+                    {recipe.image ? (
+                        <Image
+                            src={recipe.image}
+                            alt={recipe.title}
+                            fill
+                            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                        />
+                    ) : (
+                        <div className="absolute inset-0 bg-gradient-to-tr from-cream via-sage/5 to-cream flex flex-col items-center justify-center p-8 text-center select-none">
+                            <div className="w-16 h-16 rounded-full border border-gold/30 flex items-center justify-center relative mb-4 group-hover:border-gold/60 group-hover:scale-105 transition-all duration-500">
+                                <div className="w-12 h-12 rounded-full bg-gold/5 animate-pulse absolute" />
+                                <svg className="w-6 h-6 text-gold stroke-[1.25]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                                </svg>
+                            </div>
+                            <span className="text-xs uppercase tracking-[0.3em] font-serif text-charcoal/40 mb-1">Manna Nest</span>
+                            <span className="text-[10px] uppercase tracking-widest text-gold font-sans font-medium">Awaiting Kitchen Picture</span>
+                        </div>
+                    )}
 
                     {/* Difficulty badge - Sage, structural */}
-                    <div className="absolute top-0 right-0 px-4 py-2 bg-sage text-xs font-medium tracking-widest text-cream uppercase font-serif">
+                    <div className="absolute top-0 right-0 px-4 py-2 bg-sage text-xs font-medium tracking-widest text-cream uppercase font-serif z-10">
                         Pre-Order
                     </div>
                 </div>
@@ -85,7 +98,7 @@ export default function RecipeCard({ recipe, onClick }: RecipeCardProps) {
                     <div className="flex items-center gap-6 text-xs tracking-widest uppercase text-charcoal/40 font-medium font-serif">
                         <div className="flex items-center gap-2">
                             <Tag className="w-4 h-4 text-sage" />
-                            <span>${recipe.price.toFixed(2)}</span>
+                            <span>{recipe.price !== undefined ? `₹${recipe.price}` : "₹ Price on Request"}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <Truck className="w-4 h-4 text-sage" />
