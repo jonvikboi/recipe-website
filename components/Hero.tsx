@@ -67,7 +67,7 @@ export default function Hero() {
                             MANNA NEST
                         </h1>
                         <p className="mt-8 text-lg sm:text-xl md:text-2xl font-light text-charcoal/60 tracking-wider max-w-xl">
-                            Home: filled with love, peace, and happy bites.
+                            Home: filled with love, unity, and happy bites.
                         </p>
                     </motion.div>
                 </motion.div>
@@ -105,7 +105,7 @@ export default function Hero() {
                     style={{ maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)" }}
                 >
                     <CurvedLoop
-                        marqueeText="Sanctuary for the Soul · Sacred Earth Harvest · Gathering Around the Hearth · Heavenly Sustenance · "
+                        marqueeText="Honest Ingredients · Crafted by Hand · Nourishing Happy Bites · From Our Kitchen to Your Soul · "
                         speed={1}
                         curveAmount={0}
                         interactive={false}
