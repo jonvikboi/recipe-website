@@ -80,7 +80,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                             fill
                                             className="object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/90 to-transparent" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/30 to-transparent" />
                                     </>
                                 ) : (
                                     <div className="absolute inset-0 bg-gradient-to-tr from-cream via-sage/5 to-cream flex flex-col items-center justify-center p-8 text-center select-none">
@@ -182,23 +182,23 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                             >
                                                 <div>
                                                     <h3 className="text-lg font-serif font-medium text-charcoal mb-4 border-b border-charcoal/10 pb-2">
-                                                        Sanctuary Standards
+                                                        Our Cooking Philosophy
                                                     </h3>
                                                     <p className="text-sm font-light text-charcoal/70 leading-relaxed mb-6">
-                                                        Every offering is prepared at our local Hearth with deep intention, using 100% natural, organic ingredients sourced from clean, eco-friendly fields.
+                                                        Every dish is freshly prepared in our home kitchen with care, using wholesome, natural ingredients sourced from local markets.
                                                     </p>
                                                     <ul className="space-y-3 font-serif text-sm text-charcoal/70">
                                                         <li className="flex items-center gap-3">
                                                             <Leaf className="w-4 h-4 text-sage" />
-                                                            <span>100% Organic & Clean</span>
+                                                            <span>Fresh & Wholesome Ingredients</span>
                                                         </li>
                                                         <li className="flex items-center gap-3">
                                                             <ShoppingBag className="w-4 h-4 text-sage" />
-                                                            <span>Zero-Waste Kitchen Crafting</span>
+                                                            <span>Hygienic Home Cooking</span>
                                                         </li>
                                                         <li className="flex items-center gap-3">
                                                             <Truck className="w-4 h-4 text-sage" />
-                                                            <span>Direct Nest Delivery</span>
+                                                            <span>Direct Home Delivery</span>
                                                         </li>
                                                     </ul>
                                                 </div>

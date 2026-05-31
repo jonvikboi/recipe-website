@@ -218,9 +218,9 @@ export default function Contact() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={springConfig}
-                        className="space-y-6 flex flex-col justify-between"
+                        className="h-full flex"
                     >
-                        <div className="border border-charcoal/10 p-8 md:p-12 h-full flex flex-col relative bg-cream/40">
+                        <div className="border border-charcoal/10 p-8 md:p-12 h-full w-full flex flex-col relative bg-cream/40">
                             {/* Decorative square */}
                             <div className="absolute top-0 right-0 w-3 h-3 bg-gold m-4" />
                             
@@ -262,20 +262,6 @@ export default function Contact() {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-
-                        {/* Minimal CTA */}
-                        <div className="border border-charcoal bg-charcoal text-cream p-8 md:p-12">
-                            <h4 className="text-2xl font-serif font-medium mb-4">
-                                Community
-                            </h4>
-                            <p className="text-cream/60 font-light mb-8 text-sm">
-                                Join the pursuit of culinary mastery. Let us notify you of our findings.
-                            </p>
-                            <button className="border border-cream/20 hover:border-cream/100 text-xs uppercase tracking-[0.2em] py-3 px-6 transition-colors duration-300 rounded-none w-full text-left flex justify-between items-center group">
-                                <span>Subscribe</span>
-                                <span className="transform translate-x-0 group-hover:translate-x-2 transition-transform">→</span>
-                            </button>
                         </div>
                     </motion.div>
                 </div>
