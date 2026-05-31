@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Check, Tag, Truck, ShoppingBag, Plus, Minus, Calendar, MapPin, User, Leaf } from "lucide-react";
+import { X, Check, Tag, Truck, ShoppingBag, Plus, Minus, User, Leaf } from "lucide-react";
 import Image from "next/image";
 import { Recipe } from "@/lib/recipes";
 import { springConfig } from "@/lib/animation-config";
@@ -12,30 +12,52 @@ interface RecipeDetailProps {
     onClose: () => void;
 }
 
+// Retrieve and format the WhatsApp number from secure environment variables
+const getWhatsAppNumber = () => {
+    const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "919061894018";
+    const cleanNumber = rawNumber.replace(/\D/g, "");
+    // If it's a standard 10-digit number, auto-prepend country code '91' for India
+    return cleanNumber.length === 10 ? `91${cleanNumber}` : cleanNumber;
+};
+
 export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
     const [quantity, setQuantity] = useState(1);
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [deliveryDate, setDeliveryDate] = useState("Tomorrow Morning");
     const [orderStatus, setOrderStatus] = useState<"idle" | "submitting" | "success">("idle");
 
     if (!recipe) return null;
 
     const handlePreOrder = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name || !address) return;
+        if (!name) return;
         setOrderStatus("submitting");
+
+        // Format a clean, professional WhatsApp order message using ASCII characters
+        const messageText = `Hello! I would like to place a pre-order with Manna Nest.
+
+[Order Details]
+* Item: ${recipe.title}
+* Quantity: ${quantity} portion(s)
+
+[Customer Details]
+* Name: ${name}
+
+Please let me know the confirmation and payment details. Thank you!`;
+
+        const encodedMessage = encodeURIComponent(messageText);
+        const whatsappUrl = `https://wa.me/${getWhatsAppNumber()}?text=${encodedMessage}`;
+
         setTimeout(() => {
             setOrderStatus("success");
-        }, 1500);
+            // Open WhatsApp in a new tab/app window
+            window.open(whatsappUrl, "_blank");
+        }, 1200);
     };
 
     const handleClose = () => {
         // Reset states
         setQuantity(1);
         setName("");
-        setAddress("");
-        setDeliveryDate("Tomorrow Morning");
         setOrderStatus("idle");
         onClose();
     };
@@ -56,20 +78,20 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                     {/* Modal */}
                     <motion.div
                         layoutId={`recipe-card-${recipe.id}`}
-                        className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-16 bg-cream rounded-none sm:rounded-3xl overflow-hidden shadow-2xl z-50 max-w-6xl mx-auto"
+                        className="fixed inset-0 sm:inset-4 md:inset-8 lg:inset-16 bg-cream rounded-none sm:rounded-3xl overflow-hidden shadow-2xl z-50 max-w-6xl mx-auto flex flex-col"
                     >
-                        <div className="h-full overflow-y-auto">
-                            {/* Close button */}
-                            <motion.button
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ ...springConfig, delay: 0.2 }}
-                                onClick={handleClose}
-                                className="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-sage hover:text-white transition-colors"
-                            >
-                                <X className="w-6 h-6" />
-                            </motion.button>
+                        {/* Close button - Pinned Fixed to the top-right of the modal wrapper */}
+                        <motion.button
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ ...springConfig, delay: 0.2 }}
+                            onClick={handleClose}
+                            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-sage hover:text-white transition-colors cursor-pointer"
+                        >
+                            <X className="w-6 h-6" />
+                        </motion.button>
 
+                        <div className="h-full overflow-y-auto">
                             {/* Hero image */}
                             <div className="relative h-48 sm:h-64 md:h-72 lg:h-96 w-full bg-cream border-b border-charcoal/5 flex items-center justify-center overflow-hidden">
                                 {recipe.image ? (
@@ -112,24 +134,16 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                             <Check className="w-8 h-8 text-sage relative z-10" strokeWidth={3} />
                                         </div>
                                         <h2 className="text-3xl sm:text-4xl font-serif font-medium text-charcoal">
-                                            Offering Confirmed
+                                            Pre-Order Sent
                                         </h2>
                                         <p className="text-charcoal/60 leading-relaxed font-light">
-                                            Kind soul, your pre-order for <strong className="text-charcoal font-medium">{recipe.title}</strong> has been registered in the Hearth. We are gathering the finest earth ingredients and will deliver them fresh to your nest.
+                                            Kind soul, your pre-order for <strong className="text-charcoal font-medium">{recipe.title}</strong> has been structured. We have opened WhatsApp to send the details directly to our kitchen.
                                         </p>
                                         
                                         <div className="border border-charcoal/10 p-6 bg-cream/40 rounded-sm text-left text-sm space-y-3 font-serif">
                                             <div className="flex justify-between border-b border-charcoal/5 pb-2">
                                                 <span className="text-charcoal/40">Recipient:</span>
                                                 <span className="text-charcoal font-medium">{name}</span>
-                                            </div>
-                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
-                                                <span className="text-charcoal/40">Nest Address:</span>
-                                                <span className="text-charcoal font-medium max-w-[250px] text-right truncate">{address}</span>
-                                            </div>
-                                            <div className="flex justify-between border-b border-charcoal/5 pb-2">
-                                                <span className="text-charcoal/40">Delivery Window:</span>
-                                                <span className="text-charcoal font-medium">{deliveryDate}</span>
                                             </div>
                                             <div className="flex justify-between border-b border-charcoal/5 pb-2">
                                                 <span className="text-charcoal/40">Quantity:</span>
@@ -145,7 +159,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
 
                                         <button
                                             onClick={handleClose}
-                                            className="px-8 py-3 bg-sage text-cream uppercase font-serif text-sm tracking-widest hover:bg-gold transition-colors duration-300 rounded-none border border-sage hover:border-gold"
+                                            className="px-8 py-3 bg-sage text-cream uppercase font-serif text-sm tracking-widest hover:bg-gold transition-colors duration-300 rounded-none border border-sage hover:border-gold cursor-pointer"
                                         >
                                             Return to Sanctuary
                                         </button>
@@ -234,9 +248,9 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                 <h3 className="text-xl font-serif font-medium text-charcoal mb-6 border-b border-charcoal/10 pb-2">
                                                     Place Pre-Order
                                                 </h3>
-                                                
+
                                                 <form onSubmit={handlePreOrder} className="space-y-6">
-                                                    
+
                                                     {/* Quantity Selector */}
                                                     <div className="flex items-center justify-between border-b border-charcoal/10 pb-4">
                                                         <div>
@@ -249,7 +263,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors"
+                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors cursor-pointer"
                                                             >
                                                                 <Minus className="w-3.5 h-3.5" />
                                                             </button>
@@ -259,28 +273,11 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setQuantity(prev => prev + 1)}
-                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors"
+                                                                className="w-8 h-8 rounded-full border border-charcoal/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors cursor-pointer"
                                                             >
                                                                 <Plus className="w-3.5 h-3.5" />
                                                             </button>
                                                         </div>
-                                                    </div>
-
-                                                    {/* Delivery Date Selection */}
-                                                    <div>
-                                                        <label className="block text-xs uppercase tracking-widest text-charcoal/50 mb-2 font-serif flex items-center gap-1.5">
-                                                            <Calendar className="w-3.5 h-3.5 text-sage" />
-                                                            Delivery Window
-                                                        </label>
-                                                        <select
-                                                            value={deliveryDate}
-                                                            onChange={(e) => setDeliveryDate(e.target.value)}
-                                                            className="w-full px-4 py-3 border border-charcoal/20 bg-cream/70 focus:border-gold focus:outline-none transition-colors text-charcoal rounded-none font-serif text-sm cursor-pointer"
-                                                        >
-                                                            <option value="Tomorrow Morning">Tomorrow Morning (7:00 AM - 10:00 AM)</option>
-                                                            <option value="Saturday Afternoon">Saturday Afternoon (12:00 PM - 3:00 PM)</option>
-                                                            <option value="Sunday Morning">Sunday Morning (8:00 AM - 11:00 AM)</option>
-                                                        </select>
                                                     </div>
 
                                                     {/* Name Input */}
@@ -300,41 +297,21 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
                                                         />
                                                     </div>
 
-                                                    {/* Delivery Address */}
-                                                    <div>
-                                                        <label htmlFor="order-address" className="block text-xs uppercase tracking-widest text-charcoal/50 mb-2 font-serif flex items-center gap-1.5">
-                                                            <MapPin className="w-3.5 h-3.5 text-sage" />
-                                                            Nest Address (Delivery Destination)
-                                                        </label>
-                                                        <textarea
-                                                            id="order-address"
-                                                            value={address}
-                                                            onChange={(e) => setAddress(e.target.value)}
-                                                            required
-                                                            rows={3}
-                                                            placeholder="Specify delivery address details"
-                                                            className="w-full px-4 py-3 border border-charcoal/20 bg-cream/70 focus:border-gold focus:outline-none transition-colors text-charcoal rounded-none text-sm resize-none font-sans"
-                                                        />
-                                                    </div>
-
                                                     {/* Submit Pre-order */}
                                                     <motion.button
                                                         type="submit"
                                                         disabled={orderStatus === "submitting"}
-                                                        whileHover={{ backgroundColor: "var(--color-sage)", borderColor: "var(--color-sage)", color: "var(--color-cream)" }}
-                                                        className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-sage transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3 font-serif"
+                                                        whileHover={{ backgroundColor: "#25D366", borderColor: "#25D366", color: "#ffffff" }}
+                                                        className="w-full bg-orange text-cream font-medium tracking-widest uppercase py-4 px-6 border border-orange hover:border-[#25D366] transition-colors duration-300 rounded-none cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3 font-serif"
                                                     >
                                                         {orderStatus === "submitting" ? (
                                                             <>
                                                                 <div className="w-4 h-4 border border-cream border-t-transparent rounded-full animate-spin" />
-                                                                Gathering offering...
+                                                                Redirecting to WhatsApp...
                                                             </>
                                                         ) : (
                                                             <>
-                                                                {recipe.price !== undefined 
-                                                                    ? `Confirm Pre-Order — ₹${(recipe.price * quantity).toFixed(2)}`
-                                                                    : "Confirm Pre-Order (₹ Price on Request)"
-                                                                }
+                                                                Confirm pre-order on WhatsApp
                                                             </>
                                                         )}
                                                     </motion.button>
@@ -345,7 +322,7 @@ export default function RecipeDetail({ recipe, onClose }: RecipeDetailProps) {
 
                                                 </form>
                                             </motion.div>
-                                            
+
                                         </div>
                                     </>
                                 )}

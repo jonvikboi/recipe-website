@@ -61,7 +61,7 @@ export default function Contact() {
     };
 
     const contactInfo = [
-        { icon: Mail, label: "Email", value: "mistahjzj@gmail.com", href: "mailto:mistahjzj@gmail.com" },
+        { icon: Mail, label: "Email", value: "geenabjz@gmail.com", href: "mailto:geenabjz@gmail.com" },
         { icon: MapPin, label: "Location", value: "Kerala, India", href: null },
         { icon: Phone, label: "Phone", value: "+91 XXX XXX XXXX", href: "tel:+91XXXXXXXXXX" }
     ];
@@ -85,7 +85,7 @@ export default function Contact() {
                     <h2 className="text-5xl sm:text-6xl md:text-8xl font-serif font-medium text-charcoal mb-6 tracking-tight">
                         Gather
                     </h2>
-                    
+
                     <div className="flex items-center gap-6">
                         <div className="w-12 h-px bg-gold" />
                         <p className="text-xs tracking-[0.2em] text-charcoal/50 uppercase font-serif">
@@ -223,7 +223,7 @@ export default function Contact() {
                         <div className="border border-charcoal/10 p-8 md:p-12 h-full w-full flex flex-col relative bg-cream/40">
                             {/* Decorative square */}
                             <div className="absolute top-0 right-0 w-3 h-3 bg-gold m-4" />
-                            
+
                             <h3 className="text-3xl font-serif font-medium text-charcoal mb-6">
                                 Sanctuary Info
                             </h3>
